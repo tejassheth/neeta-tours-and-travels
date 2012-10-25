@@ -2,11 +2,54 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>neeta</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <filter>
+    <filter-name>AdminFilter</filter-name>
+    <filter-class>com.neeta.fliters.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>/home.jsp</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.neeta.handler.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>JSONSaveStation</servlet-name>
+    <servlet-class>com.neeta.handler.JSONSaveStation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSONSaveStation</servlet-name>
+    <url-pattern>/JSONSaveStation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>JSONAllStations</servlet-name>
+    <servlet-class>com.neeta.handler.JSONAllStations</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSONAllStations</servlet-name>
+    <url-pattern>/JSONAllStations</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>JSONDeleteStation</servlet-name>
+    <servlet-class>com.neeta.handler.JSONDeleteStation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSONDeleteStation</servlet-name>
+    <url-pattern>/JSONDeleteStation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>JSONEditStation</servlet-name>
+    <servlet-class>com.neeta.handler.JSONEditStation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSONEditStation</servlet-name>
+    <url-pattern>/JSONEditStation</url-pattern>
+  </servlet-mapping>
 </web-app>
