@@ -27,31 +27,37 @@ body {
 </style>
 <script src="js/handlebars-1.0.rc.1.js"></script>
 <script id="result-template" type="text/x-handlebars-template">
-{{#Data}}
+{{#each Data}}
 <tr>
 		<td>{{staionId}}</td>
 		<td>{{stationName}}</td>
 </tr>
-{{/Data}}
+{{/each}}
 </script>
 
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <script src="js/jquery-1.8.2.js"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$.getJSON("JSONAllStations", function(obj) {
-					var source = $("#result-template").html();
-					var template = Handlebars.compile(source);
-					//var data={"Data":[{"staionId":"1","stationName":"ahmedabad"},{"staionId":"7","stationName":"Bhavnagar"},{"staionId":"6","stationName":"Jamnagar"},{"staionId":"2","stationName":"Limbdi"},{"staionId":"4","stationName":"mumbai"}]}
-					$("#station_table").append(template(obj));
-					
-
-					Read more: Handlebars.js Part 2: Partials and Helpers - Treehouse Blog http://blog.teamtreehouse.com/handlebars-js-part-2-partials-and-helpers#ixzz2AL80WSkd 
-					Read more: 
-					//console.log(template(obj)); 
-				});
+	$(document).ready(function() {
+		$.getJSON("JSONAllStations", function(obj) {
+			var source = $("#result-template").html();
+			var template = Handlebars.compile(source);
+			//var data={"Data":[{"staionId":"1","stationName":"ahmedabad"},{"staionId":"7","stationName":"Bhavnagar"},{"staionId":"6","stationName":"Jamnagar"},{"staionId":"2","stationName":"Limbdi"},{"staionId":"4","stationName":"mumbai"}]}
+			Handlebars.registerHelper('each', function(context, options) {
+				
+				var ret="";
+				for(var prop in context)
+			    {	
+					 //ret = ret + options.fn({staionId:prop,value:context[prop]});
+			        ret=ret+"<tr><td>"+(parseInt(prop)+1)+"</td><td>"+context[prop].stationName+"</td></tr>";
+			    }
+				return ret;
 			});
+			$("#station_table").append(template(obj));
+
+			//console.log(template(obj)); 
+		});
+	});
 </script>
 </head>
 <body>
@@ -74,10 +80,6 @@ body {
 						<tr>
 							<th>No</th>
 							<th>Station Name</th>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Ahmedabad</td>
 						</tr>
 					</table>
 				</div>
