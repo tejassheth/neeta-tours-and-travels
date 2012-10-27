@@ -13,17 +13,21 @@ public static LoginBean  checkLogin(LoginBean login )
 	try {
 		Connection cn=DBConnection.getConnection();
 		con =DBConnection.getConnection();
-		PreparedStatement pst=con.prepareStatement("select * from login where emailid = ? and password = ? ");
+		PreparedStatement pst=con.prepareStatement("select * from login where email_id = ? and password = ? ");
 		pst.setString(1,login.getEmailid());
 		pst.setString(2,login.getPassword());
 		ResultSet rs=pst.executeQuery();
 		if(rs.next())
 		{
-			login.setRolesid(rs.getInt(3));
+			login.setRolesid(rs.getInt("roleid"));
+			rs.close();
 			return login;
 		}
-		else 	
+		else
+		{
+			rs.close();
 			return login=null;
+		}
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

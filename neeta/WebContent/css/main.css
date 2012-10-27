@@ -23,7 +23,17 @@
 .btn-modify-1{
 	margin: 0 0 0 42%;
 }
-	
+
+
+.btn-modify-2{
+	padding: 0px 20px;	
+}
+
+.btn-modify-3{
+	margin:0 0 0 10px;	
+}
+
+
 .label-100 label{
 	width:100px;
 	margin: 0 0 0 35%;
@@ -65,6 +75,7 @@ padding:10px 30px;
 -moz-box-shadow: 0 0 5px 5px #ccc ;
 -webkit-box-shadow: 0 0 5px 5px #ccc;
 box-shadow: 0 0 5px 5px #ccc;
+
 }
 
 table
@@ -101,12 +112,32 @@ text-align:center;
 	display:none !important;	
 }
 
-.btn-modify-2{
-	padding: 0px 20px;	
+.margin-10{
+	margin:10px;	
+}
+
+.margin-top-10{
+	margin-top:10px;	
+}
+
+#routeid span{
+	font-size:20px;	
+	width:100%;
+	padding-top:10px;
 }
 
 
 
+.hidecontent{
+	display:none;	
+}
 
 
+.routeid{	
+	background-color:#D8D2D1;	
+}
+
+.accordion-heading .accordion-toggle {
+	padding:0px;	
+}
 

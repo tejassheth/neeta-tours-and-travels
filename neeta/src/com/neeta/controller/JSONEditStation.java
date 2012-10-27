@@ -1,4 +1,4 @@
-package com.neeta.handler;
+package com.neeta.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,27 +8,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.json.simple.JSONObject;
 
 import com.neeta.beans.StationBean;
 import com.neeta.model.TblStatation;
 
-
 /**
- * Servlet implementation class JSONSaveStation
+ * Servlet implementation class JSONEditStation
  */
-//@WebServlet("/JSONSaveStation")
-public class JSONSaveStation extends HttpServlet {
+@WebServlet("/JSONEditStation")
+public class JSONEditStation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+      
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JSONSaveStation() {
+    public JSONEditStation() {
         super();
         // TODO Auto-generated constructor stub
     }
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -41,17 +40,26 @@ public class JSONSaveStation extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/json");
 		PrintWriter out=response.getWriter();
 		JSONObject jo=new JSONObject();
-		StationBean stationBean = new StationBean();
-		stationBean.setStationName(request.getParameter("stationname"));
-		//stationBean.setStationName("Limbdi");
-		if(TblStatation.saveStation(stationBean))
+		StationBean oldStation= new StationBean();
+		StationBean newStation=new StationBean();
+		oldStation.setStationId(Integer.parseInt(request.getParameter("station_id")));
+		oldStation.setStationName(request.getParameter("station_name"));
+		newStation.setStationId(oldStation.getStationId());
+		newStation.setStationName(request.getParameter("new_station_name"));
+		/*oldStation.setStationId(2);
+		oldStation.setStationName("Limbdi");
+		newStation.setStationId(2);
+		newStation.setStationName("Vastrapur");
+		System.out.print(newStation.getStationId());
+		System.out.print(oldStation.getStationId());
+		System.out.print(newStation.getStationName());
+		System.out.print(oldStation.getStationName());*/
+		if(TblStatation.updateStation(oldStation, newStation))
 			jo.put("Result","True");
 		else
-			jo.put("Result","False");
-		//System.out.print(stationBean.getStationName());
+			jo.put("Result", "False");
 		out.print(jo);
 	}
 

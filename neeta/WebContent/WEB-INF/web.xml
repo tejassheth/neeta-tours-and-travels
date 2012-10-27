@@ -14,7 +14,7 @@
   </filter-mapping>
   <servlet>
     <servlet-name>Login</servlet-name>
-    <servlet-class>com.neeta.handler.Login</servlet-class>
+    <servlet-class>com.neeta.controller.Login</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
@@ -22,7 +22,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>JSONSaveStation</servlet-name>
-    <servlet-class>com.neeta.handler.JSONSaveStation</servlet-class>
+    <servlet-class>com.neeta.controller.JSONSaveStation</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>JSONSaveStation</servlet-name>
@@ -30,7 +30,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>JSONAllStations</servlet-name>
-    <servlet-class>com.neeta.handler.JSONAllStations</servlet-class>
+    <servlet-class>com.neeta.controller.JSONAllStations</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>JSONAllStations</servlet-name>
@@ -38,7 +38,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>JSONDeleteStation</servlet-name>
-    <servlet-class>com.neeta.handler.JSONDeleteStation</servlet-class>
+    <servlet-class>com.neeta.controller.JSONDeleteStation</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>JSONDeleteStation</servlet-name>
@@ -46,10 +46,26 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>JSONEditStation</servlet-name>
-    <servlet-class>com.neeta.handler.JSONEditStation</servlet-class>
+    <servlet-class>com.neeta.controller.JSONEditStation</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>JSONEditStation</servlet-name>
     <url-pattern>/JSONEditStation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>JSONAllRoutes</servlet-name>
+    <servlet-class>com.neeta.controller.JSONAllRoutes</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSONAllRoutes</servlet-name>
+    <url-pattern>/JSONAllRoutes</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>JSONRouteData</servlet-name>
+    <servlet-class>com.neeta.controller.JSONRouteData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSONRouteData</servlet-name>
+    <url-pattern>/JSONRouteData</url-pattern>
   </servlet-mapping>
 </web-app>

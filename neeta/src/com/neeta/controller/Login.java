@@ -1,4 +1,4 @@
-package com.neeta.handler;
+package com.neeta.controller;
 import org.json.simple.*;
 import com.neeta.beans.LoginBean;
 import com.neeta.model.TblLogin;
@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
 		{
 			jo.put("Result","True");
 			HttpSession session=request.getSession();
-			session.setAttribute("UserName", login.getEmailid());
+			session.setAttribute("Name", login.getEmailid());
 			session.setAttribute("Role",login.getRolesid());
 		}
 		else

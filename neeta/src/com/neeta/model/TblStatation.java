@@ -9,7 +9,6 @@ import java.sql.Savepoint;
 import java.sql.Statement;
 import com.neeta.beans.StationBean;
 
-
 public class TblStatation {
 	static Connection con;
 
@@ -44,9 +43,31 @@ public class TblStatation {
 		}
 	}
 
-	public static StationBean getState() {
-		StationBean state = new StationBean();
-		return state;
+	public static StationBean getStation(int  stationId) {
+		StationBean stationBean=new StationBean();
+		try {
+			
+			con = DBConnection.getConnection();
+			if (stationId == 0) {
+				return stationBean = null;
+			}
+			String query = "SELECT station_id, station_name FROM stations WHERE station_id=?";
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setInt(1, stationId);
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				stationBean.setStationId(rs.getInt("station_id"));
+				stationBean.setStationName(rs.getString("station_name"));
+			}
+			else
+				stationBean =null;
+			rs.close();
+			return stationBean;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return stationBean = null;
+
+		}
 	}
 
 	public static boolean deleteStation(StationBean stationBean) {
@@ -119,6 +140,7 @@ public class TblStatation {
 				stationBeans.setStationId(rs.getInt("station_id"));
 				station.add(stationBeans);
 			}
+			rs.close();
 			return station;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

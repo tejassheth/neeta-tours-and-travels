@@ -1,4 +1,4 @@
-package com.neeta.handler;
+package com.neeta.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -28,9 +28,12 @@ public class LogOut extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session =request.getSession();
-		session.removeAttribute("Name");
-		session.removeAttribute("Role");
+		HttpSession session =request.getSession(false);
+		if(session!= null)
+		{
+			session.removeAttribute("Name");
+			session.removeAttribute("Role");
+		}
 		response.sendRedirect("index.jsp");
 	}
 

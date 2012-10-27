@@ -1,4 +1,4 @@
-package com.neeta.handler;
+package com.neeta.controller;
 
 
 import java.io.IOException;
