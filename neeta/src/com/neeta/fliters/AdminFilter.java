@@ -32,6 +32,7 @@ public class AdminFilter implements Filter {
 	public void destroy() {
 		// TODO Auto-generated method stub
 	}
+
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
@@ -42,13 +43,23 @@ public class AdminFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession(false);
 		if (session != null) {
-			// pass the request along the filter chain
-			chain.doFilter(request, response);
+			String ses= session.getAttribute("Role").toString();
+			System.out.print(ses);
+			
+					if(ses.equals(new String("admin"))) {
+				System.out.print(session.getAttribute("Role"));
+				// pass the request along the filter chain
+				chain.doFilter(request, response);
+			} else {
+				// System.out.print("Else");
+				((HttpServletResponse) response)
+						.sendRedirect("../user/bus.jsp");
+			}
 		} else {
-			// System.out.print("Else");
-			((HttpServletResponse) response).sendRedirect("index.jsp");
+			((HttpServletResponse) response).sendRedirect("../user/bus.jsp");
 		}
 	}
+
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */

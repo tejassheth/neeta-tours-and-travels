@@ -10,7 +10,7 @@
   </filter>
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
-    <url-pattern>/home.jsp</url-pattern>
+    <url-pattern>/admin/home.jsp</url-pattern>
   </filter-mapping>
   <servlet>
     <servlet-name>Login</servlet-name>
@@ -60,12 +60,36 @@
     <servlet-name>JSONAllRoutes</servlet-name>
     <url-pattern>/JSONAllRoutes</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>JSONRouteData</servlet-name>
     <servlet-class>com.neeta.controller.JSONRouteData</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>JSONRouteData</servlet-name>
     <url-pattern>/JSONRouteData</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeleteRoute</servlet-name>
+    <servlet-class>com.neeta.controller.DeleteRoute</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteRoute</servlet-name>
+    <url-pattern>/admin/DeleteRoute</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>BusList</servlet-name>
+    <servlet-class>com.neeta.controller.BusList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BusList</servlet-name>
+    <url-pattern>/admin/BusList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RouteList</servlet-name>
+    <servlet-class>com.neeta.controller.RouteList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RouteList</servlet-name>
+    <url-pattern>/admin/RouteList</url-pattern>
   </servlet-mapping>
 </web-app>

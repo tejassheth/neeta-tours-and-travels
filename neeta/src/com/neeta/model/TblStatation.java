@@ -19,9 +19,10 @@ public class TblStatation {
 	}
 
 	public static boolean saveStation(StationBean stationBean) {
+		Savepoint svPoint = null;
 		try {
 			con = DBConnection.getConnection();
-			Savepoint svPoint = con.setSavepoint("savestation");
+			svPoint = con.setSavepoint("savestation");
 			if (stationBean.getStationName().equalsIgnoreCase("")) {
 				return false;
 			}
@@ -29,12 +30,12 @@ public class TblStatation {
 			PreparedStatement pst = con.prepareStatement(query);
 			pst.setString(1, stationBean.getStationName());
 			pst.execute();
-			con.commit();
+			con.commit();		
 			return true;
 		} catch (SQLException e) {
 			try {
 				e.printStackTrace();
-				con.rollback();
+				con.rollback(svPoint);
 				return false;
 			} catch (SQLException e1) {
 				e.printStackTrace();
@@ -71,9 +72,10 @@ public class TblStatation {
 	}
 
 	public static boolean deleteStation(StationBean stationBean) {
+		Savepoint svPoint=null;
 		try {
 			con = DBConnection.getConnection();
-			Savepoint svPoint = con.setSavepoint("deletestation");
+			 svPoint= con.setSavepoint("deletestation");
 			if (stationBean.getStationName().equalsIgnoreCase("")) {
 				return false;
 			}
@@ -87,7 +89,7 @@ public class TblStatation {
 		} catch (SQLException e) {
 			try {
 				e.printStackTrace();
-				con.rollback();
+				con.rollback(svPoint);
 				return false;
 			} catch (SQLException e1) {
 				e.printStackTrace();
@@ -99,9 +101,10 @@ public class TblStatation {
 
 	public static boolean updateStation(StationBean oldStation,
 			StationBean newStation) {
+		Savepoint svPoint =null;
 		try {
 			con = DBConnection.getConnection();
-			Savepoint svPoint = con.setSavepoint("deletestation");
+			svPoint = con.setSavepoint("deletestation");
 			if (oldStation.getStationName().equalsIgnoreCase("")
 					&& (oldStation.getStationId() == 0)
 					&& (newStation.getStationName().equalsIgnoreCase(""))) {
@@ -118,7 +121,7 @@ public class TblStatation {
 		} catch (SQLException e) {
 			try {
 				e.printStackTrace();
-				con.rollback();
+				con.rollback(svPoint);
 				return false;
 			} catch (SQLException e1) {
 				e.printStackTrace();

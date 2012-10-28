@@ -34,7 +34,7 @@ public class LogOut extends HttpServlet {
 			session.removeAttribute("Name");
 			session.removeAttribute("Role");
 		}
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("./admin/index.jsp");
 	}
 
 	/**

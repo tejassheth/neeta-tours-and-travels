@@ -2,6 +2,8 @@ package com.neeta.controller;
 import org.json.simple.*;
 import com.neeta.beans.LoginBean;
 import com.neeta.model.TblLogin;
+import com.neeta.model.TblRoles;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -41,7 +43,7 @@ public class Login extends HttpServlet {
 			jo.put("Result","True");
 			HttpSession session=request.getSession();
 			session.setAttribute("Name", login.getEmailid());
-			session.setAttribute("Role",login.getRolesid());
+			session.setAttribute("Role",TblRoles.getRole(login.getRolesid()).getRoleName());
 		}
 		else
 			jo.put("Result","False");
