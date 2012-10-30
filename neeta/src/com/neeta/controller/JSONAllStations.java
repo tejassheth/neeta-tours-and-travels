@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import com.neeta.beans.StationBean;
-import com.neeta.model.TblStatation;
+import com.neeta.model.TblStation;
 
 /**
  * Servlet implementation class JSONAllStations
@@ -36,7 +36,7 @@ public class JSONAllStations extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		JSONObject j = new JSONObject();
 		JSONArray jary = new JSONArray();
-		ArrayList<StationBean> stationList = TblStatation.getAllStations();
+		ArrayList<StationBean> stationList = TblStation.getAllStations();
 		if (stationList != null) {
 			j.put("Result", "True");
 			Iterator<StationBean> it = stationList.iterator();

@@ -69,12 +69,12 @@
     <url-pattern>/JSONRouteData</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>DeleteRoute</servlet-name>
-    <servlet-class>com.neeta.controller.DeleteRoute</servlet-class>
+    <servlet-name>JSONDeleteRoute</servlet-name>
+    <servlet-class>com.neeta.controller.JSONDeleteRoute</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DeleteRoute</servlet-name>
-    <url-pattern>/admin/DeleteRoute</url-pattern>
+    <servlet-name>JSONDeleteRoute</servlet-name>
+    <url-pattern>/admin/JSONDeleteRoute</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>BusList</servlet-name>
@@ -91,5 +91,21 @@
   <servlet-mapping>
     <servlet-name>RouteList</servlet-name>
     <url-pattern>/admin/RouteList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AddNewBus</servlet-name>
+    <servlet-class>com.neeta.controller.AddNewBus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddNewBus</servlet-name>
+    <url-pattern>/admin/AddNewBus</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FetchRoute</servlet-name>
+    <servlet-class>com.neeta.controller.FetchRoute</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FetchRoute</servlet-name>
+    <url-pattern>/admin/FetchRoute</url-pattern>
   </servlet-mapping>
 </web-app>

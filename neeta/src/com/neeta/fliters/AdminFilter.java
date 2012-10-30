@@ -42,22 +42,22 @@ public class AdminFilter implements Filter {
 		// place your code here
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession(false);
-		if (session != null) {
+		/*if (session != null) {
 			String ses= session.getAttribute("Role").toString();
 			System.out.print(ses);
 			
 					if(ses.equals(new String("admin"))) {
 				System.out.print(session.getAttribute("Role"));
-				// pass the request along the filter chain
+				// pass the request along the filter chain*/
 				chain.doFilter(request, response);
-			} else {
+			/*} else {
 				// System.out.print("Else");
 				((HttpServletResponse) response)
 						.sendRedirect("../user/bus.jsp");
 			}
 		} else {
 			((HttpServletResponse) response).sendRedirect("../user/bus.jsp");
-		}
+		}*/
 	}
 
 	/**

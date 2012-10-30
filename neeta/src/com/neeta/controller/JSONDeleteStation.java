@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.neeta.beans.StationBean;
-import com.neeta.model.TblStatation;
+import com.neeta.model.TblStation;
 
 /**
  * Servlet implementation class JSONDeleteStation
@@ -46,7 +46,7 @@ public class JSONDeleteStation extends HttpServlet {
 		stationBean.setStationId(Integer.parseInt(request.getParameter("station_id")));
 		stationBean.setStationName(request.getParameter("station_name"));
 		JSONObject jo=new JSONObject();
-		if(TblStatation.deleteStation(stationBean))
+		if(TblStation.deleteStation(stationBean))
 			jo.put("Result","True");
 		else
 			jo.put("Result","False");

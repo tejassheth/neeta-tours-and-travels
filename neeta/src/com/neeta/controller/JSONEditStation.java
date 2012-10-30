@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.neeta.beans.StationBean;
-import com.neeta.model.TblStatation;
+import com.neeta.model.TblStation;
 
 /**
  * Servlet implementation class JSONEditStation
@@ -56,7 +56,7 @@ public class JSONEditStation extends HttpServlet {
 		System.out.print(oldStation.getStationId());
 		System.out.print(newStation.getStationName());
 		System.out.print(oldStation.getStationName());*/
-		if(TblStatation.updateStation(oldStation, newStation))
+		if(TblStation.updateStation(oldStation, newStation))
 			jo.put("Result","True");
 		else
 			jo.put("Result", "False");

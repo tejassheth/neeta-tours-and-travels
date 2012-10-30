@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.neeta.beans.StationBean;
-import com.neeta.model.TblStatation;
+import com.neeta.model.TblStation;
 
 
 /**
@@ -47,7 +47,7 @@ public class JSONSaveStation extends HttpServlet {
 		StationBean stationBean = new StationBean();
 		stationBean.setStationName(request.getParameter("stationname"));
 		//stationBean.setStationName("Limbdi");
-		if(TblStatation.saveStation(stationBean))
+		if(TblStation.saveStation(stationBean))
 			jo.put("Result","True");
 		else
 			jo.put("Result","False");

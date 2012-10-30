@@ -9,13 +9,13 @@ import java.sql.Savepoint;
 import java.sql.Statement;
 import com.neeta.beans.StationBean;
 
-public class TblStatation {
+public class TblStation {
 	static Connection con;
 
 	/**
 	 * @param args
 	 */
-	TblStatation() {
+	TblStation() {
 	}
 
 	public static boolean saveStation(StationBean stationBean) {
