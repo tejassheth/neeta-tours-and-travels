@@ -39,7 +39,7 @@
 							<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Packages<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="newpackage.jsp">New Package</a></li>
+                                    <li><a href="AddPackageServlet">New Package</a></li>
                                     <li><a href="managepackage.jsp">Remove/Edit Package</a></li>									
                                     <li class="divider"></li>
                                 </ul>
@@ -78,6 +78,7 @@
                             <li class="dropdown">
                             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
+                                	<li><a href="PackageBookingRequestServlet">Booking Request</a></li>
                                     <li><a href="changepassword.jsp">Change Password</a></li>
                                     <li><a href="../LogOut">LogOut</a></li>                                    
                                     <li class="divider"></li>                                    

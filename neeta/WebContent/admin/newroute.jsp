@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>New Bus</title>
+        <title>New Route</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -54,6 +54,10 @@
         <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 	<script src="js/jquery-1.8.2.js"></script>
 <script type="text/javascript">
+$()
+{
+	$("#theValue1").val(0);
+}
 	function loadStation($s) {
 		$.getJSON("../JSONAllStations", function(obj) {
 			//alert(obj.Result);
@@ -140,19 +144,19 @@
                                 <select class="span2" name="station1" id="station1">
                                                                    
                                 </select>
-                                <input type="text" name="time1" id="time1" class="span2">
-                                <input type="text" name="distance1" id="distance1" class="span2">
-                                <input type="text" name="seatingfare1" id="seatingfare1" class="span2">
-                                <input type="text" name="sleepingfare1" id="sleepingfare1" class="span2">
+                                <input type="text" name="time1" id="time1" class="span2" readonly="readonly">
+                                <input type="number" name="distance1" id="distance1" class="span2">
+                                <input type="number" name="seatingfare1" id="seatingfare1" class="span2">
+                                <input type="number" name="sleepingfare1" id="sleepingfare1" class="span2">
                             </p>
                             <p id="pstation2">                                
                                 <select class="span2" name="station2" id="station2">
                                                                    
                                 </select>
-                                <input type="text" name="time2" id="time2" class="span2">
-                                <input type="text" name="distance2" id="distance2" class="span2">
-                                <input type="text" name="seatingfare2" id="seatingfare2" class="span2">
-                                <input type="text" name="sleepingfare2" id="sleepingfare2" class="span2">
+                                <input type="text" name="time2" id="time2" class="span2" readonly="readonly">
+                                <input type="number" name="distance2" id="distance2" class="span2">
+                                <input type="number" name="seatingfare2" id="seatingfare2" class="span2">
+                                <input type="number" name="sleepingfare2" id="sleepingfare2" class="span2">
                             </p>
                      	</div>
                       	<div class="heading"></div>
@@ -193,7 +197,7 @@
 				var newdiv = document.createElement('p');				
 				var divIdName = "myDiv"+num ;				
 				newdiv.setAttribute('id',divIdName);
-				var content = "<select class=\"span2\" name=\"station"+num+"\" id=\"station"+num+"\">  </select> <input type=\"text\" id=\"time"+num+"\" name=\"time"+num+"\" class=\"span2\"> <input type=\"text\" id=\"distance"+num+"\" name=\"distance"+num+"\" class=\"span2\"> <input type=\"text\" class=\"span2\" id=\"seatingfare"+num+"\" name=\"seatingfare"+num+"\"> <input type=\"text\" class=\"span2\" id=\"sleepingfare"+num+"\" name=\"sleepingfare"+num+"\"> ";							
+				var content = "<select class=\"span2\" name=\"station"+num+"\" id=\"station"+num+"\">  </select> <input type=\"text\" id=\"time"+num+"\" name=\"time"+num+"\" class=\"span2\" readonly='readonly'> <input type=\"number\" id=\"distance"+num+"\" name=\"distance"+num+"\" class=\"span2\"> <input type=\"number\" class=\"span2\" id=\"seatingfare"+num+"\" name=\"seatingfare"+num+"\"> <input type=\"number\" class=\"span2\" id=\"sleepingfare"+num+"\" name=\"sleepingfare"+num+"\"> ";							
 				newdiv.innerHTML = content;				
 				ni.appendChild(newdiv);	
 				$("#time"+num+"").timepicker();

@@ -102,7 +102,7 @@ public class PackageBookingRequest
 			ps1.executeUpdate();
 			con1.commit();
 			ps1.clearBatch();
-ps1.close();
+			ps1.close();
 		}
 		
 		st.clearBatch();
@@ -116,7 +116,7 @@ ps1.close();
 	{
 		String fromAddress = "dante21vergil@gmail.com";
 	    	  String toAddress =email;
-	    	  String subject=null ; 
+	    	  String subject = "Package Booking Updates";
 	    	  String message=null;
 	    	  if(output.equals("confirmed"))
 	    	  {
@@ -127,7 +127,6 @@ ps1.close();
 	    	  		"Have a good Day" +
 	    	  		"<br>Regards<br>" +
 	    	  		"Team Neeta</h1>" ;
-	    	  subject="Package Booking Updates";
 	    	  }
 	    	  else if(output.equals("Rejected"))
 	    	  {
@@ -137,12 +136,10 @@ ps1.close();
 		    	  		"Have a good Day" +
 		    	  		"Regards " +
 		    	  		"Team Neeta" ;
-	    	  subject="Package Booking Updates";
 	    	  }
 	    	  else if(output.equals("gotpassword"))
 	    	  {
 	    		  message="Respected sir, your password is "+password;
-	    		  subject="Neeta Bus-Your Password";
 	    	
 	    	  }
 	    	  Properties properties = System.getProperties();

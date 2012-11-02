@@ -40,7 +40,7 @@
             	<h2 class="heading">Manage Bus</h2>
                 <div class="white-block">
                 	<table cellpadding="0" cellspacing="0">
-                    <tr>
+                    <tr><th>No.</th>
                     	<th>Bus No.</th>
                         <th>Route</th>
                         <th>Seating Fare</th>
@@ -48,8 +48,9 @@
                         <th colspan="2">Action</th>
             
                     </tr>
+                    <c:set var="counter" value="1" />
                     <c:forEach items="${buslist}" var="bl">
-                        <tr>
+                        <tr><td>${counter}</td>
                             <td>${bl.bus_no}</td>
                             <td>${bl.route}</td>
                             <td>${bl.seating}</td>
@@ -60,6 +61,7 @@
                             <td><button class="btn btn-modify-2 btn-danger" name="btndel${bl.bus_id}" id="delete" busid="${bl.bus_id}" >Delete</button></td>
                             </form>
                         </tr>
+                        <c:set var="counter" value="${counter+1}" />
                     </c:forEach>
                     </table>
                 </div> 
@@ -90,14 +92,14 @@
     				{
         		$.post("../JSONDeleteBus",{"busid":$busid},function(obj){
         			 if(obj.Result=="True"){
- 						alert("Route is Delete");
+ 						alert("Bus is Deleted");
  						 location.reload();				
  						loadRoute();
  				    }
         		},"json");
     				}
-        		else
-					alert("Route is Not Delete");
+        		
+					
         		e.preventDefault();
         	});
         });

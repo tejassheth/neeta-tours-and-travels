@@ -85,11 +85,11 @@
                     	</p>
                         <p>
                         	<label for="seating">Seating Seats:</label>
-                        	<input type="text" class="span2" name="seating" placeholder="No. of seating seats">
+                        	<input type="number" class="span2" name="seating" placeholder="No. of seating seats">
                         </p>
                         <p>
                         	<label for="sleeper">Sleeper Seats:</label>
-                        	<input type="text" class="span2" name="sleeper" placeholder="No. of sleeper seats">
+                        	<input type="number" class="span2" name="sleeper" placeholder="No. of sleeper seats">
                         </p>
                     </div>
                 </div>

@@ -55,6 +55,10 @@
         <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 	<script src="js/jquery-1.8.2.js"></script>
 <script type="text/javascript">
+$()
+{
+	
+}
 	function loadStation($s) {
 		$.getJSON("../JSONAllStations", function(obj) {
 			//alert(obj.Result);
@@ -145,24 +149,25 @@
                      	
                         <div id="stationgroup">
                         	<c:forEach items="${Route_Map}" var="route_MapList" varStatus="index">                            
-                            <p id="pstation1">
-                                <input type="hidden" value="${counter}" id="theValue" name="theValue" />
+                            <p id="pstation${counter}">
                                 <select class="span2" name="station${counter}" sid="${route_MapList.station_id}" id="station${counter}">
                                                                    
                                 </select>
-                                <input type="text" name="time${counter}" id="time1" class="span2" value="${route_MapList.duration}">
-                                <input type="text" name="distance${counter}" id="distance1" class="span2" value="${route_MapList.distance}">
-                                <input type="text" name="seatingfare${counter}" id="seatingfare1" class="span2" value="${route_MapList.seating_fare}">
-                                <input type="text" name="sleepingfare${counter}" id="sleepingfare1" class="span2" value="${route_MapList.sleeping_fare}">
+                                <input type="text" name="time${counter}" id="time1" class="span2" value="${route_MapList.duration}" readonly="readonly">
+                                <input type="number" name="distance${counter}" id="distance1" class="span2" value="${route_MapList.distance}">
+                                <input type="number" name="seatingfare${counter}" id="seatingfare1" class="span2" value="${route_MapList.seating_fare}">
+                                <input type="number" name="sleepingfare${counter}" id="sleepingfare1" class="span2" value="${route_MapList.sleeping_fare}">
                                 <script text="text/javascript">
                                 loadStation($("#station"+${counter}));	
                                 </script>
-                                
+                                 
                             </p>
                             <c:set var="counter" value="${counter+1}" />
+                            
                             </c:forEach>
+                            
                      	</div>
-                     	
+                     	<input type="hidden" value="${counter-2}" id="theValue" name="theValue"  />
                       	<div class="heading"></div>
                         <p class="p-mod-1">                        	
                             <button class="btn btn-primary" name="addday" id="addday" onClick="return addInputBox();">Add Station</button>
@@ -200,13 +205,14 @@
 				numi.value = num;
 				num++;			
 				var newdiv = document.createElement('p');				
-				var divIdName = "myDiv"+num ;				
+				var divIdName = "pstation"+num ;				
 				newdiv.setAttribute('id',divIdName);
-				var content = "<select class=\"span2\" name=\"station"+num+"\" id=\"station"+num+"\">  </select> <input type=\"text\" id=\"time"+num+"\" name=\"time"+num+"\" class=\"span2\"> <input type=\"text\" id=\"distance"+num+"\" name=\"distance"+num+"\" class=\"span2\"> <input type=\"text\" class=\"span2\" id=\"seatingfare"+num+"\" name=\"seatingfare"+num+"\"> <input type=\"text\" class=\"span2\" id=\"sleepingfare"+num+"\" name=\"sleepingfare"+num+"\"> ";							
+				var content = "<select class=\"span2\" name=\"station"+num+"\" id=\"station"+num+"\">  </select> <input type=\"text\" id=\"time"+num+"\" name=\"time"+num+"\" class=\"span2\" readonly=\"readonly\" > <input type=\"number\" id=\"distance"+num+"\" name=\"distance"+num+"\" class=\"span2\"> <input type=\"number\" class=\"span2\" id=\"seatingfare"+num+"\" name=\"seatingfare"+num+"\"> <input type=\"number\" class=\"span2\" id=\"sleepingfare"+num+"\" name=\"sleepingfare"+num+"\"> ";							
 				newdiv.innerHTML = content;				
 				ni.appendChild(newdiv);	
 				$("#time"+num+"").timepicker();
 				loadStation($("#station"+num+""));
+				//alert(num);
 				return false;		
 			}
 			
@@ -219,7 +225,7 @@
 				if((num-2)==0)					
 					return false;				
 				numi.value = num-2;								
-				var divIdName = "myDiv"+num ;
+				var divIdName = "pstation"+num ;
 				var olddiv = document.getElementById(divIdName);
 				ni.removeChild(olddiv);
 				return false;

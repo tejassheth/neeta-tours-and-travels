@@ -42,6 +42,8 @@ public class AdminFilter implements Filter {
 		// place your code here
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession(false);
+		System.out.print(req.getParameter("JavaScript"));
+		
 		/*if (session != null) {
 			String ses= session.getAttribute("Role").toString();
 			System.out.print(ses);

@@ -97,11 +97,11 @@
                     	</p>
                         <p>
                         	<label for="seating">Seating Seats:</label>
-                        	<input type="text" class="span2" name="seating" placeholder="No. of seating seats" value="${bus.seating }">
+                        	<input type="number" class="span2" name="seating" placeholder="No. of seating seats" value="${bus.seating }">
                         </p>
                         <p>
                         	<label for="sleeper">Sleeper Seats:</label>
-                        	<input type="text" class="span2" name="sleeper" placeholder="No. of sleeper seats" value="${bus.sleeper }">
+                        	<input type="numner" class="span2" name="sleeper" placeholder="No. of sleeper seats" value="${bus.sleeper }">
                         </p>
                     </div>
                 </div>

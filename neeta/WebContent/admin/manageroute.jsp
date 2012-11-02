@@ -70,6 +70,10 @@ form {
 </script>
  -->
 <script type="text/javascript">
+$()
+{
+	$("#theValue1").val(0);
+}
 function loadRoute()
 {
 	//$(".accordion-inner").remove();
