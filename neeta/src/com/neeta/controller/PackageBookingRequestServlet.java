@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 
-@WebServlet("/PackageBookingRequestServlet")
+@WebServlet("/admin/PackageBookingRequestServlet")
 public class PackageBookingRequestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,16 +42,16 @@ public class PackageBookingRequestServlet extends HttpServlet {
 		try {
 			
 			pkg_book_list = pbr.Package_Booking_Data();
-			System.out.print(pkg_book_list);
-			
+			//System.out.print(pkg_book_list);
+			request.setAttribute("pkg_book_details", pkg_book_list);
+			rd=request.getRequestDispatcher("showrequests.jsp");
+			rd.forward(request, response);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("pkg_book_details", pkg_book_list);
-		rd=request.getRequestDispatcher("showrequests.jsp");
-		rd.forward(request, response);
+		
 
 	}
 

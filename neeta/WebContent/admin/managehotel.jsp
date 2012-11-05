@@ -5,29 +5,36 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <head>
+    
+        
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Package Requests</title>
+        <title>Manage Hotel</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js">
+        </script>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootstrap-responsive.css">
         <link rel="stylesheet" href="css/main.css">
-        <style>
+        
+        <style type="text/css">
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
-			
-			.white-block{
-				width:80%;
-					
-			}
         </style>
         
-
         <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+        
+        <script type="text/javascript">
+        
+        
+        
+      
+        
+        
+        </script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -42,38 +49,41 @@
 
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
-            	<h2 class="heading">Requests For Package Booking</h2>
-                <div align="center">
+            	<h2 class="heading">Manage Hotel</h2>
                 <div class="white-block">
-                	<table cellpadding="0" cellspacing="0" class="table-striped">
+                
+                	<table cellpadding="0" cellspacing="0">
                     <tr>
-                    	<th>Package ID</th>
-                        <th>Book By</th>                        
-                        <th>Booking Date</th>
-                        <th>Journey Date</th>
-                        <th>No. of Person</th>
-                        <th colspan="2">Action</th>                                                
+                    	
+                    	<th>Hotel ID</th>
+                        <th>Hotel Name</th>
+                        <th>Hotel Type</th>
+                        
+                        <th>Contact Details</th>
+                        <th colspan="2">Action</th>
                     </tr>
                     
-                     <c:forEach items="${pkg_book_details}" var="pkg">
-      				<form method="post" action="PackageBookingRequestServlet">
-                    <tr>
-                    	<input type="hidden" name="pb_id" value="${pkg.packagebooking_id}"> 
-                    	<td>${pkg.package_id}</td>
-                        <input type="hidden" name="Email_id" value="${pkg.email_id}">
-                        <td>${pkg.email_id}</td>
-                        <td>${pkg.booking_date}</td>
-                        <td>${pkg.journey_date}</td>
-                        <td>${pkg.no_of_persons}</td>
-                        <input type="hidden" value="${pkg.fare}" name="fare">    
-                        <td><button class="btn btn-modify-2 btn-success" name="req_type" value="Accept" onClick="">Accept</button></td>
-                        <td><button class="btn btn-modify-2 btn-danger" name="req_type" onClick="" value="Reject">Reject</button></td>                   
+      <c:forEach items="${Hotel_List}" var="List">
+      <form method="post" action="AddHotelServlet">
+        <tr valign="middle" align="center" class="abc">
+        
+        	
+            <td>${List.h_id}</td>
+            <td>${List.hname}</td>
+            <td>${List.type} Star</td>
+            
+            <td>${List.contact_det}</td>
+             
+            
+ 				<input type="hidden"  name="h_id"  value="${List.h_id}" >         
+            <td><button  class="btn btn-modify-2 btn-warning" name="fun_type" onClick="" value="edit">Edit</button></td>
+            <td><button  class="btn btn-modify-2 btn-danger" name="fun_type" onClick="" value="delete">Delete</button></td>
                     </tr>
-                     </form>
+                    </form>
                     </c:forEach>
                     </table>
-                </div>
-                </div>
+                    
+                </div>   
             </div>
 
             <!-- Example row of columns -->
@@ -96,3 +106,14 @@
         
     </body>
 </html>
+<script type="text/javascript">
+function delete(){
+	var result=confirm('Are you sure u want to delete');
+	if(result==true)
+	return true;
+	else
+	return false;
+}
+
+
+</script>

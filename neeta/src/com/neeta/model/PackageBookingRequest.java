@@ -31,13 +31,13 @@ public class PackageBookingRequest
 		String pkg_book_details="select * from pkg_booking where status='pending'";
 		
 		st=con1.createStatement();
-		PackageBookingDetailsBean pbd=null;
+		List<PackageBookingDetailsBean>  details=new ArrayList<PackageBookingDetailsBean>();
 		rs=st.executeQuery(pkg_book_details);
 		while(rs.next())
 		{
 			
-			pbd=new PackageBookingDetailsBean();
-			
+			PackageBookingDetailsBean pbd=new PackageBookingDetailsBean();
+			//System.out.println("erroerjfwefwjfwjes");
 			
 			pbd.setpackagebooking_id(rs.getInt("PB_id"));
 			
@@ -53,7 +53,7 @@ public class PackageBookingRequest
 			details.add(pbd);
 		}
 		
-		
+		con1.commit();
 		st.clearBatch();
 		rs.close();
 		
@@ -71,16 +71,17 @@ public class PackageBookingRequest
 		if(result==true)
 		{
 		Book_status="update pkg_booking set status=? where PB_id="+PB_id;
+		System.out.println(Book_status);
 			PreparedStatement ps=con1.prepareStatement(Book_status);
 			
 			ps.setString(1, status);
 			ps.executeUpdate();
-			con1.commit();
+			
 			ps.clearBatch();
-		ps.close();	
+			ps.close();	
 		}
 		
-		
+		con1.commit();
 		
 		
 		
@@ -139,7 +140,7 @@ public class PackageBookingRequest
 	    	  }
 	    	  else if(output.equals("gotpassword"))
 	    	  {
-	    		  message="Respected sir, your password is "+password;
+	    		  message="Respected sir, your password is ::"+password;
 	    	
 	    	  }
 	    	  Properties properties = System.getProperties();
@@ -160,10 +161,6 @@ public class PackageBookingRequest
 	    	  tr1.sendMessage(msg, msg.getAllRecipients());
 	    	  tr1.close(); 
 	    	 
-			
-		
-		
-		
 		return true;
 	}
 	

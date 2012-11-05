@@ -208,4 +208,65 @@ public class TblPackage
     	return pkg_desc_details;
     }
     
+    public boolean pkg_delete(int pkg_id) throws SQLException
+    {
+    	Connection con=DBConnection.getConnection();
+    	String pkg="delete from fixed_package where P_id"+pkg_id;
+    	Statement st=con.createStatement();
+    	st.executeQuery(pkg);
+    	con.commit();
+    	return true; 	
+    }
+    
+    public static List<PackageBean>  Package_Details() throws SQLException
+    {
+    	List<PackageBean> pb=new ArrayList<PackageBean>();
+    	Connection con=DBConnection.getConnection();
+    	String detail="select P_id, Name,Duration,fare from fixed_package";
+    	Statement st=con.createStatement();
+    	ResultSet rs=st.executeQuery(detail);
+    	PackageBean pb1=null;
+    	while(rs.next())
+    	{
+    		pb1=new PackageBean();
+    		pb1.setP_id(rs.getInt("P_id"));
+    		pb1.setName(rs.getString("Name"));
+    		pb1.setDuration(rs.getInt("Duration"));
+    		pb1.setFare(rs.getFloat("fare"));
+    		
+    	}
+    	
+    	
+    	return pb;
+    	
+    }
+    
+    public static ArrayList<PackageBean> getPackage() 
+    {
+        Connection con=DBConnection.getConnection();
+        String query="select P_id,Name from fixed_package";
+        Statement st;
+        try 
+        {
+            st = con.createStatement();
+            ResultSet rs=st.executeQuery(query);
+            ArrayList<PackageBean> plist=new ArrayList<PackageBean>();
+            while(rs.next())
+            {
+                PackageBean pb=new PackageBean();
+                pb.setP_id(rs.getInt("P_id"));
+                pb.setName(rs.getString("Name"));
+                plist.add(pb);
+            }
+            return plist;
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+            return null;
+        }
+        
+    }
+    
+    
 }

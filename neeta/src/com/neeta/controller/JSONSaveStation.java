@@ -45,7 +45,7 @@ public class JSONSaveStation extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		JSONObject jo=new JSONObject();
 		StationBean stationBean = new StationBean();
-		stationBean.setStationName(request.getParameter("stationname"));
+		stationBean.setStationName(request.getParameter("station_name"));
 		//stationBean.setStationName("Limbdi");
 		if(TblStation.saveStation(stationBean))
 			jo.put("Result","True");

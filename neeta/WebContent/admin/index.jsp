@@ -33,11 +33,15 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
         <script src="js/jquery-1.8.2.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
         <script type="text/javascript">
         $(document).ready(function(){
         	$("#FrmLogin").submit(function(e){
+        		$('#FrmLogin').validate();
         		var emailid = $("#emailid").val();
                 var password = $("#password").val();
+                if((emailid=!'') &&(password!=''))
+                {
         			$.post("../Login",{"emailid":emailid,"password":password},function(data){
         				var result=data.Result;
         				if(result=="False")
@@ -45,6 +49,7 @@
         				if(result=="True")
         					 document.location.href="home.jsp";
       						},"json");
+                }
         			e.preventDefault();
          	});
         });
@@ -72,8 +77,8 @@
             <div class="hero-unit" align="center">
                  <form class="navbar-form" method="post" action="" onSubmit="" id="FrmLogin">
                  			<p id="result" style="display: none;">E-mail and Password is Incorrect  !!</p>
-                            <p><label for="emailid">E-mail ID:</label><input class="span2" type="text" placeholder="Email" name="emailid" id="emailid"></p>
-                            <p><label for="password">Password:</label><input class="span2" type="password" placeholder="Password" name="password" id="password"></p>
+                            <p><label for="emailid">E-mail ID:</label><input class="span2" type="email" placeholder="Email" name="emailid" id="emailid" required="required"></p>
+                            <p><label for="password">Password:</label><input class="span2" type="password" placeholder="Password" name="password" id="password" required="required"></p>
                             <button type="submit" class="btn btn-primary" id="signin">Sign in</button>&nbsp;&nbsp;&nbsp;&nbsp;<a href="forgotpassword.jsp">Forgot password?</a>
               	</form>
             </div>
@@ -85,15 +90,13 @@
         
         <script>window.jQuery || document.write('<script src="js/jquery-1.8.2js"><\/script>')</script>
 
-        <script src="js/bootstrap.js"></script>
-
-        <script src="js/main.js"></script>
-
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
+        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        	$('#signin').click(function(){
+        		$("#FrmLogin").validate();
+        	});
         </script>
+
+       
     </body>
 </html>

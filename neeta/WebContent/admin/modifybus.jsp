@@ -72,42 +72,42 @@
 
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
-               <h2 class="heading">New Bus</h2>
-               <form class="form-inline label-150" method="post" action="ModifyBusDetail" onSubmit="">
+               <h2 class="heading">Modify Bus</h2>
+               <form class="form-inline label-150" method="post" action="ModifyBusDetail" id="modifybus">
 			   	<div class="row">
                     <div class="span5">
                     <c:forEach items="${d1}" var="bus">
                     <c:forEach items="${rmb1}" var="route">
                     <p>
-                    	<input type="hidden" name="busid" value="${bus.bus_id }">
+                    	<input type="hidden" name="busid" value="${bus.bus_id }" required="required">
                     	<label for="busno">Bus No. :</label>
-                        <input type="text" name="busno" id="busno" class="span2" value="${bus.bus_no }">
+                        <input type="text" name="busno" id="busno" class="span2" value="${bus.bus_no }" required="required">
                     </p>	
 					<p>
 						<label for="time">Departure Time:</label>
-						<input type="text" name="time" class="span2" id="time" readonly value="${route.source_time}" >
+						<input type="text" name="time" class="span2" id="time" readonly value="${route.source_time}" required="required">
 					</p>
                     </div>
                     <div class="span5">
                     	<p>
                     	<label for="name">Route:</label>
                         <select class="span2" name="route" id="route" sid="${route.route_id}">
-                        	
+          	
                         </select>
                     	</p>
                         <p>
                         	<label for="seating">Seating Seats:</label>
-                        	<input type="number" class="span2" name="seating" placeholder="No. of seating seats" value="${bus.seating }">
+                        	<input type="number" class="span2" id="seating" name="seating" placeholder="No. of seating seats" value="${bus.seating }" required="required" min="0">
                         </p>
                         <p>
                         	<label for="sleeper">Sleeper Seats:</label>
-                        	<input type="numner" class="span2" name="sleeper" placeholder="No. of sleeper seats" value="${bus.sleeper }">
+                        	<input type="number" class="span2" id="sleeper" name="sleeper" placeholder="No. of sleeper seats" value="${bus.sleeper }" required="required" min="0">
                         </p>
                     </div>
                 </div>
                 <div class="clearfix"></div>                    
                     <p>
-                    	<input class="btn btn-primary btn-modify" type="submit" name="submit" value="Edit Bus">
+                    	<input class="btn btn-primary btn-modify" type="submit" id="submit" name="submit" value="Edit Bus">
                     </p>
 			   </form>
             </div>
@@ -134,9 +134,14 @@
 			$( "#time" ).timepicker();
 		});
 		</script>
+      
+        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        $("#submit").click(function(){
+        	$('#modifybus').validate();
+        });
+        </script>
         <script src="js/bootstrap.js"></script>
-
         <script src="js/main.js"></script>
-        
     </body>
 </html>

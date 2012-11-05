@@ -16,7 +16,7 @@
         <style>
             body {
                 padding-top: 60px;
-                padding-bottom: 40px;
+                padding-bottom: 40px; 
             }
 			.label-150 label{
 				width:150px;
@@ -51,19 +51,13 @@
                     <div class="span5">
                         <p>                	
                             <label for="package_name">Package Name :</label>
-                            <input type="text" class="span2" name="package_name" id="package_name">
-                        </p>
-                        
-                        <p>
-                        	<label for="duration">Duration :</label>
-                            <input type="text" name="duration" id="duration" class="span2">
-                        </p>
-                        
-                       	<div id="daygroup">
+                            <input type="text" class="span2" name="package_name" id="package_name" required="required">
+                        </p>                       
+                       <div id="daygroup">
                             <input type="hidden" name="theValue" value="0" id="theValue" />                            
                             <p id="myDiv1">
 	                            <label for="day1">Day 1:</label>
-                                <input type="text" class="span2" name="day1" id="day1">
+                                <input type="text" class="span2" name="day1" id="day1" required="required">
                             </p>                            
                         </div>            
                         
@@ -82,7 +76,7 @@
                     	
                         <p>
                         	<label for="fare">Fare :</label>
-                            <input type="text" name="fare" id="fare" class="span2">
+                            <input type="number" name="fare" id="fare" class="span2" required="required">
                         </p>
                         
                         <p>
@@ -95,20 +89,9 @@
                             </select>
                         </p>
                         
-                        
-                        <div id="imagegroup"> 
-                        	<input type="hidden" value="0" id="theValue1" />
-                            <input id="img_path" name="img_path" class="hidden-file" type="file" >                            
-                            <p id="imageblock1">                                
-                            	<label for="image1">Select Image 1:</label>
-                                <input id="image1" name="image1" class="span2" type="text" onclick="$('input[id=img_path]').click();" readonly>
-                                <input type="button" class="btn btn-primary" id="imagebutton1" onclick="$('input[id=img_path]').click();" value="Browse">	
-                            </p>
-                        </div>
-                        
                         <p>
-                        	<button class="btn btn-primary" name="addimage" id="addimage" onClick="return addImage();">Add Image</button>
-                            <button class="btn btn-danger" name="removeimage" id="removeimage" onClick="return removeImage();">Remove Image</button>
+                        	<label for="minperson">Minimum Person :</label>
+                            <input type="number" name="minperson" id="minperson" class="span2" required="required">
                         </p>
                                                 
                        <p>
@@ -118,7 +101,7 @@
                                                                         
                     </div>
                 <div class="clearfix"></div>
-                	<input type="submit" name="submit" class="btn btn-primary btn-modify-1" value="Add Package">
+                	<input type="submit" id="submit" name="submit" class="btn btn-primary btn-modify-1" value="Add Package">
                 </form>
             </div>
 
@@ -136,8 +119,10 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/jquery-1.8.2.js"><\/script>')</script>
 
-        <script src="js/bootstrap.js"></script>
         
+        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js"></script>        	
+        <script src="js/main.js"></script>
         <script src="js/nicEdit.js" type="text/javascript"></script>
         <script type="text/javascript">
         	//<![CDATA[
@@ -147,10 +132,6 @@
 		</script>
         
         <script type="text/javascript">
-        $()
-        {
-        	$("#theValue1").val(0);
-        }
 			function addInputBox()
 			{			
 				var ni = document.getElementById('daygroup');				
@@ -161,7 +142,7 @@
 				var newdiv = document.createElement('p');				
 				var divIdName = "myDiv"+num ;				
 				newdiv.setAttribute('id',divIdName);							
-				newdiv.innerHTML = "<label for=day"+num+">Day "+num+":</label> <input type=\"text\" id=day"+num+" name=day"+num+" class=\"span2\" /> ";				
+				newdiv.innerHTML = "<label for=day"+num+">Day "+num+":</label> <input type=\"text\" id=day"+num+" name=day"+num+" class=\"span2\" required=\"required\" /> ";				
 				ni.appendChild(newdiv);	
 				return false;		
 			}
@@ -210,6 +191,9 @@
 				ni.removeChild(olddiv);
 				return false;
 			}
+			$('#submit').click(function(){
+				$("#newpackage").validate();
+			});
 		</script>	
         
         <script type="text/javascript">
@@ -219,8 +203,7 @@
 				
 			});
 		</script>
-        	
-        <script src="js/main.js"></script>
+		
         
     </body>
 </html>

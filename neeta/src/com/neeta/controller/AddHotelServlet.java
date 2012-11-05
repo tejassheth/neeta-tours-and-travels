@@ -26,7 +26,7 @@ import com.neeta.model.TblHotel;
 //import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
-@WebServlet("/AddHotelServlet")
+@WebServlet("/admin/AddHotelServlet")
 public class AddHotelServlet extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
@@ -72,74 +72,29 @@ public class AddHotelServlet extends HttpServlet
 	{
 
 		String fun_type=request.getParameter("fun_type");
-		 System.out.println("button name"+fun_type);
-			if(fun_type.equals("add"))
+		 System.out.println("button name "+fun_type);
+			if(fun_type.equals("AddHotel"))
 		{
-			String s= "playlist/";
-			String saveFile="p:/";
-			String contentType = request.getContentType();
-			//System.out.println(contentType);
-			if((contentType != null)&&(contentType.indexOf("multipart/form-data") >= 0))
-			{
-			    DataInputStream in = new DataInputStream(request.getInputStream());
-			    int formDataLength = request.getContentLength();
-			    byte dataBytes[] = new byte[formDataLength];
-			    int byteRead = 0;
-			    int totalBytesRead = 0;
-			    while(totalBytesRead < formDataLength)
-			    {
-			        byteRead = in.read(dataBytes, totalBytesRead,formDataLength);
-			        totalBytesRead += byteRead;
-			    }
-			    String file = new String(dataBytes);
-			    
-			    saveFile += file.substring(file.indexOf("filename=\"")+ 10);
-			    saveFile = saveFile.substring(0, saveFile.indexOf("\n"));
-			    saveFile = saveFile.substring(saveFile.lastIndexOf("\\") + 1,saveFile.indexOf("\""));
-			    
-			    int lastIndex = contentType.lastIndexOf("=");
-			    String boundary = contentType.substring(lastIndex + 1,contentType.length());
-			    int pos;
-			    pos = file.indexOf("filename=\"");
-			    pos = file.indexOf("\n", pos) + 1;
-			    pos = file.indexOf("\n", pos) + 1;
-			    pos = file.indexOf("\n", pos) + 1;
-			    int boundaryLocation = file.indexOf(boundary, pos) - 4;
-			    int startPos = ((file.substring(0, pos)).getBytes()).length;
-			    int endPos = ((file.substring(0, boundaryLocation)).getBytes()).length;
-			    System.out.println(saveFile);
-			    System.out.println(saveFile);
-			
-			
-			
-			
-			
-			
-			
 			int type=Integer.parseInt(request.getParameter("hotel_type"));
-			//String path=request.getParameter("image_path");
-			String path=saveFile;
+			
 			hib.setHname(request.getParameter("hotel_name"));
 			hib.setAddress(request.getParameter("address"));
 			hib.setType(type);
 			hib.setContact_det("contact");
-			//hib.setpath(path);
+			hib.setInfo(request.getParameter("hotel_info"));
+			
 		try {
 					boolean res=ah.add_Hotel(hib);
-		
+		System.out.print(res);
 					if(res==true)
 					{
-						File ff = new File(saveFile);
-						FileOutputStream fileOut = new FileOutputStream(ff);
-						fileOut.write(dataBytes, startPos, (endPos - startPos));
-						fileOut.flush();
-						fileOut.close();
+						
 						message="Hotel added Successfully";
 		            }
 					else
 						message="Could not upload hotel";
 					request.setAttribute("h_add",message);
-					rd=request.getRequestDispatcher("hotel_add.jsp");
+					rd=request.getRequestDispatcher("addhotel.jsp");
 					rd.forward(request, response);
 					
 		}
@@ -151,7 +106,7 @@ public class AddHotelServlet extends HttpServlet
 		
 		
 		  
-}
+
 		
 		
 }
@@ -203,28 +158,20 @@ public class AddHotelServlet extends HttpServlet
 		else if(fun_type.equals("Update"))
 		{
 			hotel_id=request.getParameter("h_id");
-			//String old_path=request.getParameter("old_path");
-			//System.out.println("oldpath"+old_path);
-			//String new_path=request.getParameter("new_path");
-			//System.out.println("new_path"+new_path);
-			//String path1=null;
-			//if(new_path.equals(null)||new_path=="")
-			//	path1=old_path;
-		//	else
-			//	path1=new_path;
-			//System.out.println(hotel_id);
-			//System.out.println(path1);
+			
 			try {
 				//hib.setH_id(Integer.parseInt(hotel_id));
 				hib.setHname(request.getParameter("Hotel_name"));
 				hib.setAddress(request.getParameter("address"));
 				hib.setType(Integer.parseInt(request.getParameter("type")));
-				hib.setContact_det("contact");
+				hib.setContact_det(request.getParameter("contact"));
+				hib.setInfo(request.getParameter("info"));
 				
 				
 				
-			upd_res=ah.update(hib,Integer.parseInt("hotel_id"));
-			} catch (NumberFormatException | SQLException e)
+			upd_res=ah.update(hib,Integer.parseInt(hotel_id));
+			}
+			catch (NumberFormatException | SQLException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();

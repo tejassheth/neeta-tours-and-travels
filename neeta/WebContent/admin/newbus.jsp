@@ -64,16 +64,16 @@
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
                <h2 class="heading">New Bus</h2>
-               <form class="form-inline label-150" method="post" action="AddNewBus" onSubmit="">
+               <form class="form-inline label-150" method="post" action="AddNewBus" id="newbus">
 			   	<div class="row">
                     <div class="span5">
                     <p>
                     	<label for="busno">Bus No. :</label>
-                        <input type="text" name="busno" id="busno" class="span2">
+                        <input type="text" name="busno" id="busno" class="span2" required="required">
                     </p>	
 					<p>
 						<label for="time">Departure Time:</label>
-						<input type="text" name="time" class="span2" id="time" readonly >
+						<input type="time" name="time" class="span2" id="time" required="required" readonly="readonly" >
 					</p>
                     </div>
                     <div class="span5">
@@ -85,17 +85,17 @@
                     	</p>
                         <p>
                         	<label for="seating">Seating Seats:</label>
-                        	<input type="number" class="span2" name="seating" placeholder="No. of seating seats">
+                        	<input type="number" class="span2" name="seating" id="seating" min="0" placeholder="No. of seating seats" required="required">
                         </p>
                         <p>
                         	<label for="sleeper">Sleeper Seats:</label>
-                        	<input type="number" class="span2" name="sleeper" placeholder="No. of sleeper seats">
+                        	<input type="number" class="span2" name="sleeper" id="sleeper" min="0" max="999" placeholder="No. of sleeper seats" required="required">
                         </p>
                     </div>
                 </div>
                 <div class="clearfix"></div>                    
                     <p>
-                    	<input class="btn btn-primary btn-modify" type="submit" name="submit" value="Add Bus">
+                    	<input class="btn btn-primary btn-modify" type="submit" id="submit" name="submit" value="Add Bus">
                     </p>
 			   </form>
             </div>
@@ -115,11 +115,18 @@
         <script>window.jQuery || document.write('<script src="js/jquery-1.8.2.js"><\/script>')</script>
 		<script src="js/jquery-ui-1.8.24.custom.min.js"></script>
 		<script src="js/jquery-ui-timepicker-addon.js"></script>        
+		<script src="js/jquery.validate.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
 		$(document).ready(function() 
 		{
-			$( "#time" ).timepicker();
+			$("#time" ).timepicker();
+			
 		});
+		</script>
+		<script type="text/javascript">
+			$('#submit').click(function(){
+				$("#newbus").validate();
+			});
 		</script>
         <script src="js/bootstrap.js"></script>
 

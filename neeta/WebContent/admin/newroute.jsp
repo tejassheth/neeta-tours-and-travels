@@ -37,15 +37,29 @@
 			}
 			
 			.div-mod{
-				margin-left:40px;	
+				margin-top: 10px;
+				margin-left:0px;	
 			}
 			
 			.p-mod{
-				border-bottom:solid 1px #0099FF;	
+				border-bottom:solid 1px #0099FF;
+				margin-top: 5px;	
 			}
 			
 			.p-mod-1{
 				margin-top:10px;	
+			}
+			.white-block{
+				padding: 0px;
+			}
+			
+			.span10{
+				width: 1020px;
+				margin-left: 0px;
+			}
+			
+			.botton-8{
+				margin-bottom: 8px;
 			}
         </style>
        
@@ -96,7 +110,7 @@ $()
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
             	<h2 class="heading">Add New Route</h2>
-            	<form method="post" name="newpackage" id="newpackage" action="AddNewRoute" class="form-inline label-150">
+            	<form method="post" name="newroute" id="newpackage" action="AddNewRoute" class="form-inline label-150">
                     <div class="span5">
                         <p>                	
                             <label for="sourcecity">Source City :</label>
@@ -112,61 +126,58 @@ $()
                     	<p>                	
                             <label for="destinationcity">destination City :</label>
                             <select type="text" class="span3" name="destinationcity" id="destinationcity">
-                            	                            </select>
+                           	</select>
                         </p>                                            
                     </div>
                 <div class="clearfix"></div>
                 <div class="span10">
                 	<h3>Intermediate Station</h3>
                     <div class="white-block div-mod">
-                        <p class="p-mod">
-                            <label class="label-mod">Station</label>
-                            <label class="label-mod">Time</label>
-                            <label class="label-mod">Distance</label>
-                            <label class="label-mod">Seating Fare</label>
-                            <label class="label-mod">Sleeping Fare</label>
+                        <p class="padding-top-5"></p>
+                        <p>
+                            <div class="span2"><label class="label-mod">Station</label></div>
+                            <div class="span2"><label class="label-mod">Time</label></div>
+                            <div class="span2"><label class="label-mod">Distance</label></div>
+                            <div class="span2"><label class="label-mod">Seating Fare</label></div>
+                            <div class="span2"><label class="label-mod">Sleeping Fare</label></div>
                         </p>
-                        <div class="hidden-file">   <!-- This is only for template of thos p copy this content to jquery code below -->
-                                
-                                <select class="span2" name="station">
-                                    <option>--Select City--</option>
-                                    <option value="5">Anand</option>
-                                    <optionvalue="6">vadodara</option>                                
-                                </select>
-                                <input type="text" class="span2">
-                                <input type="text" class="span2">
-                                <input type="text" class="span2">
-                                <input type="text" class="span2">
-                     	</div>
-                        <div id="stationgroup">                            
+                        
+                          <div class="clearfix"></div>
+                          <p  class="p-mod"></p>
+                          <div id="stationgroup">                            
                             <p id="pstation1">
                                 <input type="hidden" value="1" id="theValue" name="theValue" />
+                                <div class="span2">
                                 <select class="span2" name="station1" id="station1">
                                                                    
-                                </select>
-                                <input type="text" name="time1" id="time1" class="span2" readonly="readonly">
-                                <input type="number" name="distance1" id="distance1" class="span2">
-                                <input type="number" name="seatingfare1" id="seatingfare1" class="span2">
-                                <input type="number" name="sleepingfare1" id="sleepingfare1" class="span2">
+                                </select></div>
+                                <div class="span2"><input type="text" name="time1" id="time1" class="span2" readonly="readonly" required="required"></div>
+                                <div class="span2"><input type="number" name="distance1" id="distance1" class="span2" required="required" min="0"></div>
+                                <div class="span2"><input type="number" name="seatingfare1" id="seatingfare1" class="span2" required="required"></div>
+                                <div class="span2"><input type="number" name="sleepingfare1" id="sleepingfare1" class="span2" required="required"></div>
                             </p>
+                            <div class="clearfix"></div>
                             <p id="pstation2">                                
+                                <div class="span2">
                                 <select class="span2" name="station2" id="station2">
                                                                    
-                                </select>
-                                <input type="text" name="time2" id="time2" class="span2" readonly="readonly">
-                                <input type="number" name="distance2" id="distance2" class="span2">
-                                <input type="number" name="seatingfare2" id="seatingfare2" class="span2">
-                                <input type="number" name="sleepingfare2" id="sleepingfare2" class="span2">
+                                </select></div>
+                                <div class="span2"><input type="text" name="time2" id="time2" class="span2" readonly="readonly" required="required"></div>
+                                <div class="span2"><input type="number" name="distance2" id="distance2" class="span2" required="required"></div>
+                                <div class="span2"><input type="number" name="seatingfare2" id="seatingfare2" class="span2" required="required"></div>
+                                <div class="span2"><input type="number" name="sleepingfare2" id="sleepingfare2" class="span2" required="required"></div>
                             </p>
+                            <div class="clearfix"></div>
+                            <p class="botton-8"></p>
                      	</div>
-                      	<div class="heading"></div>
+                      	<div class="p-mod"></div>
                         <p class="p-mod-1">                        	
-                            <button class="btn btn-primary" name="addday" id="addday" onClick="return addInputBox();">Add Station</button>
-                            <button class="btn btn-danger" name="removeday" id="removeday" onClick="return removeInputBox();">Remove Station</button>
+                            <button class="btn btn-primary margin-bottom-10 margin-left-10" name="addday" id="addday" onClick="return addInputBox();">Add Station</button>
+                            <button class="btn btn-danger margin-bottom-10 margin-left-10" name="removeday" id="removeday" onClick="return removeInputBox();">Remove Station</button>
                         </p>                        
 					</div>  
                 </div>
-                	<input type="submit" name="submit" class="btn btn-primary btn-modify-1" value="Add Route">
+                	<input type="submit" name="submit" class="btn btn-primary btn-modify-1" value="Add Route" id="add">
                 </form>
             </div>
 
@@ -197,10 +208,15 @@ $()
 				var newdiv = document.createElement('p');				
 				var divIdName = "myDiv"+num ;				
 				newdiv.setAttribute('id',divIdName);
-				var content = "<select class=\"span2\" name=\"station"+num+"\" id=\"station"+num+"\">  </select> <input type=\"text\" id=\"time"+num+"\" name=\"time"+num+"\" class=\"span2\" readonly='readonly'> <input type=\"number\" id=\"distance"+num+"\" name=\"distance"+num+"\" class=\"span2\"> <input type=\"number\" class=\"span2\" id=\"seatingfare"+num+"\" name=\"seatingfare"+num+"\"> <input type=\"number\" class=\"span2\" id=\"sleepingfare"+num+"\" name=\"sleepingfare"+num+"\"> ";							
+				var content = " <div class=\"span2\"> <select class=\"span2\" name=\"station"+num+"\" id=\"station"+num+"\">  </select> </div>";
+				content=content+" <div class=\"span2\"> <input type=\"text\" id=\"time"+num+"\" name=\"time"+num+"\" class=\"span2\" readonly='readonly' required=\"required\"> </div>"; 
+				content=content+" <div class=\"span2\"> <input type=\"number\" id=\"distance"+num+"\" name=\"distance"+num+"\" class=\"span2\" required=\"required\"> </div>";
+				content=content+" <div class=\"span2\"> <input type=\"number\" class=\"span2\" id=\"seatingfare"+num+"\" name=\"seatingfare"+num+"\" required=\"required\"> </div>";
+				content=content+" <div class=\"span2\"> <input type=\"number\" class=\"span2\" id=\"sleepingfare"+num+"\" name=\"sleepingfare"+num+"\" required=\"required\"> </div>";							
+				content=content+" <div class=\"clearfix\"></div> ";
 				newdiv.innerHTML = content;				
 				ni.appendChild(newdiv);	
-				$("#time"+num+"").timepicker();
+				$("#time"+num).timepicker();
 				loadStation($("#station"+num+""));
 				return false;		
 			}
@@ -231,11 +247,16 @@ $()
 		</script>
 		
         <script src="js/jquery-ui-1.8.24.custom.min.js"></script>
-		<script src="js/jquery-ui-timepicker-addon.js"></script>        
+		<script src="js/jquery-ui-timepicker-addon.js"></script>
+		<script src="js/jquery.validate.min.js" type="text/javascript"></script>        
 		<script type="text/javascript">
 		$(document).ready(function() 
 		{
 			$( "#time1" ).timepicker();
+			$( "#time2" ).timepicker();
+			$('#add').click(function(){
+				$("#newpackage").validate();
+				});
 		});
 		</script>        
 

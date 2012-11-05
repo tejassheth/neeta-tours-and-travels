@@ -24,7 +24,7 @@ body {
 <link rel="stylesheet" href="css/jquery.ui.timepicker.css">
 <link rel="stylesheet" href="css/jquery-ui-1.8.24.custom.css">
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
-<script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
 <script src="js/jquery-1.8.2.js"></script>
 <script type="text/javascript">
 	function loadStation() {
@@ -43,10 +43,13 @@ body {
 		loadStation();
 		//var obj = ({"Data":{"Alabama":"01","Alaska":"02","Arizona":"03","Arkansas":"04","California":"05","Colorado":"06","Connecticutt":"07","Delaware":"08","Florida":"09","Georgia":"10","Hawaii":"11","Idaho":"12","Illinois":"13","Indiana":"14","Iowa":"15","Kansas":"16","Kentucky":"17","Louisiana":"18","Maine":"19","Massachusetts":"20","Michigan":"21"}});
 		$("#Frm").submit(function(e) {
+			//$('#Frm').validate();
 			var station_name = $("#station :selected").text();
 			var station_id = $("#station").val();
 			var new_station_name = $("#station_name").val();
 			//alert(station_name+ " "+station_id+" "+new_station_name);
+			if(new_station_name!='')
+			{
 			$.post("../JSONEditStation", {
 					"station_name" : station_name,
 					"station_id": station_id,
@@ -62,11 +65,11 @@ body {
 					e.preventDefault();
 				}
 				$("#result").show();
-				$("#result").hide(2000);
 				$("#stationname").val("");
 				loadStation();
 				}, "json");
 				e.preventDefault();
+			}
 		});
 	});
 </script>
@@ -81,21 +84,19 @@ body {
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit">
 			<h2 class="heading">Edit Station</h2>
-			<form class="form-inline label-150" method="post" action="#" id="Frm"
-				onSubmit="">
-				<p id="result"></p>
+			<form class="form-inline label-150" method="post" action="#" id="Frm" onSubmit="">
+				<p id="result" align="center"></p>
 				<p>
 					<label for="state">Select Station :</label> <select class="span2"
 						name="station" id="station">
 					</select>
 				</p>
 				<p>
-					<label for="city">Enter Station Name:</label> <input type="text"
-						name="stationname" class="span2" id="station_name">
+					<label for="city">Enter Station Name:</label> 
+					<input type="text" name="stationname" class="span2" id="station_name" required="required">
 				</p>
 				<p>
-					<input class="btn btn-primary btn-modify" type="submit"
-						name="submit" value="Edit Station">
+					<input class="btn btn-primary btn-modify" type="submit" id="submit" name="submit" value="Edit Station">
 				</p>
 			</form>
 		</div>
@@ -113,7 +114,14 @@ body {
 				|| document
 						.write('<script src="js/jquery-1.8.2.js"><\/script>')
 	</script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/main.js"></script>
+	<script src="js/bootstrap.js"></script>        	
+        <script src="js/main.js"></script>
+	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        	$('#submit').click(function(){
+        		$("#Frm").validate();
+        	});
+        </script>
+	
 </body>
 </html>

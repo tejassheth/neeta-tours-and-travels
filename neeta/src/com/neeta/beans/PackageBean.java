@@ -18,8 +18,20 @@ public class PackageBean
     int duration;
     float fare;
     int hotelId;
+    int p_id=0;
 
-    public void setName(String name) {
+    
+    
+
+	public int getP_id() {
+		return p_id;
+	}
+
+	public void setP_id(int p_id) {
+		this.p_id = p_id;
+	}
+
+	public void setName(String name) {
         this.name = name;
     }
 
@@ -66,4 +78,9 @@ public class PackageBean
     public int getHotelId() {
         return hotelId;
     }
+
+	public void setMin_person(int parseInt) {
+		// TODO Auto-generated method stub
+		
+	}
 }

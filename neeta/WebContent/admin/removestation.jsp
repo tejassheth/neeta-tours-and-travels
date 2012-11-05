@@ -13,14 +13,18 @@
 <meta name="viewport" content="width=device-width">
 
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap-responsive.css">
+<link rel="stylesheet" href="css/main.css">
+
 <style>
 body {
 	padding-top: 60px;
 	padding-bottom: 40px;
 }
+.btn-modify-1{
+	margin: 0 0 0 53%;
+}
 </style>
-<link rel="stylesheet" href="css/bootstrap-responsive.css">
-<link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/jquery.ui.timepicker.css">
 <link rel="stylesheet" href="css/jquery-ui-1.8.24.custom.css">
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
@@ -92,8 +96,7 @@ body {
 					</select>
 				</p>
 				<p>
-					<input class="btn btn-primary btn-modify" type="submit"
-						name="submit" value="Remove Station">
+					<input class="btn btn-primary btn-modify-1" type="submit" name="submit" value="Remove Station">
 				</p>
 
 			</form>

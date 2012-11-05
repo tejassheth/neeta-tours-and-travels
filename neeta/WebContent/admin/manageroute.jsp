@@ -23,6 +23,9 @@ body {
 form {
 	margin: 0;
 }
+.btn-padd-2{
+	padding: 2px 20px 2px 20px;
+}
 </style>
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <script src="js/jquery-1.8.2.js"></script>
@@ -159,8 +162,8 @@ function loadRoute()
 								ret=ret+"</tr>";
 								$i++;	
 							});							
-							ret=ret+"</table><div class='pull-right'>";
-							ret=ret+"<form action='FetchRoute' method='post'><input type='hidden' value='"+routeId+"' name='route_id'> <input type='submit' class='btn btn-modify-2 btn-warning' name='btnedit' id='btnedit' value='Edit'>  ";
+							ret=ret+"</table><div class='pull-right margin-bottom-20'>";
+							ret=ret+"<form action='FetchRoute' method='post'><input type='hidden' value='"+routeId+"' name='route_id'> <input type='submit' class='btn btn-modify-2 btn-warning btn-padd-2' name='btnedit' id='btnedit' value='Edit'>  ";
 							ret=ret+" <button class='btn btn-modify-2 btn-danger' name='btndel' id='btndelete' routeid='"+routeId+"' >Delete</button></form>";
 						ret=ret+"</div></div>";
 						$(th).parent().parent().append(ret);

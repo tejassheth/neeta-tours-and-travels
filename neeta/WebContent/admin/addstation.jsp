@@ -13,26 +13,38 @@
 <meta name="viewport" content="width=device-width">
 
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap-responsive.css">
+<link rel="stylesheet" href="css/main.css">
+
 <style>
 body {
 	padding-top: 60px;
 	padding-bottom: 40px;
 }
+.btn-modify-1{
+	margin: 0 0 0 54%;
+}
 </style>
-<link rel="stylesheet" href="css/bootstrap-responsive.css">
-<link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/jquery.ui.timepicker.css">
 <link rel="stylesheet" href="css/jquery-ui-1.8.24.custom.css">
 <script src="js/jquery-1.8.2.js" ></script>
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(
-			function() {
+				function() {
 				//var obj = ({"Data":{"Alabama":"01","Alaska":"02","Arizona":"03","Arkansas":"04","California":"05","Colorado":"06","Connecticutt":"07","Delaware":"08","Florida":"09","Georgia":"10","Hawaii":"11","Idaho":"12","Illinois":"13","Indiana":"14","Iowa":"15","Kansas":"16","Kentucky":"17","Louisiana":"18","Maine":"19","Massachusetts":"20","Michigan":"21"}});
 				$("#Frm").submit(function(e){
+					
 	        		var station_name = $("#stationname").val();
+	        		if(station_name!='')
+	        			{
+	        			
+	        			
+	        		//alert(station_name);
 	               			$.post("../JSONSaveStation",{"station_name":station_name},function(data){
-	        				var result = data.Result;
+	        				
+	               				var result = data.Result;
 	        				if (result == "False") {
 	        					$("#result").html("Not Save !! Try Again");
 	        				}
@@ -40,12 +52,13 @@ body {
 	        					$("#result").html("Save Succesfully");
 	        				}
 	        				$("#result").show();
-	        				$("#result").hide(2000);
+	        				
 	        				$("#stationname").val("");
 	        			}, "json");
 	        			e.preventDefault();
-	         	});
-
+	        			}
+	        			});
+				
 			});
 </script>
 </head>
@@ -61,15 +74,15 @@ body {
 	<div class="container">
 		<!-- Main hero unit for a primary marketing message or call to action -->
 		<div class="hero-unit">
+			<h2 class="heading">Add Station</h2>
 			<form class="form-inline label-150" method="post" action="#" id="Frm"	>
-			<p id="result"></p>
+			<p id="result" align="center"></p>
 				<p>
-					<label for="city">Enter Station Name:</label> <input type="text"
-						name="stationname" class="span2" id="stationname">
+					<label for="city">Enter Station Name:</label> 
+					<input type="text" name="stationname" class="span2" id="stationname" required="required" maxlength="30" >
 				</p>
 				<p>
-					<input class="btn btn-primary" type="submit" name="submit"
-						value="Add Station" id="submit">
+					<input class="btn btn-primary btn-modify-1" type="submit" name="submit" value="Add Station" id="submit">
 				</p>
 			</form>
 		</div>
@@ -87,7 +100,23 @@ body {
 				|| document
 						.write('<script src="js/jquery-1.8.2.js"><\/script>')
 	</script>
-	<script src="js/bootstrap.js"></script>
+	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$('#submit').click(function(){
+			$.validator.addMethod(
+			        "regex",
+			        function(value, element, regexp) {
+			            var re = new RegExp(regexp);
+			            return this.optional(element) || re.test(value);
+			        },
+			        "Please check your input."
+			);
+			
+			$("#Frm").validate();
+		});
+	</script>
+	<script src="js/bootstrap.js"></script>	
+        
 	<script src="js/main.js"></script>
 </body>
 </html>

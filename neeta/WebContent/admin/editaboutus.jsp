@@ -3,10 +3,11 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Add City</title>
+        <title>Edit About Us</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -19,10 +20,8 @@
         </style>
         <link rel="stylesheet" href="css/bootstrap-responsive.css">
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/jquery.ui.timepicker.css">
-		<link rel="stylesheet" href="css/jquery-ui-1.8.24.custom.css" >
+
         <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
-		
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -36,41 +35,16 @@
         <div class="container">
 
             <!-- Main hero unit for a primary marketing message or call to action -->
-            <div class="hero-unit" >
-               <h2 class="heading">Change Password</h2>
-               <form class="form-inline label-150" method="post" action="changeAndForgetPassword" id="passwordfrm" onSubmit="">
-			   		
-                    <p>
-						<label for="city">Current Password:</label>
-						<input type="password" name="old_password" required="required" class="span2" id="current_pass" >
-					</p>
-                    
-                    <p>
-						<label for="city">New Password:</label>
-						<input type="password" name="new_password" class="span2" required="required" id="new_pass" >
-					</p>
-                    
-                    <p>
-						<label for="city">Confirm Password:</label>
-						<input type="password" name="confirm_password" class="span2" required="required" id="con_pass" >
-					</p>
-                    
-                    <p>
-                    	<input class="btn btn-primary btn-modify" type="submit" id="submit" name="request_type" value="ChangePassword">
-                    </p>
-                    
-                     <p><% if(request.getAttribute("result")==null)
-                    
-                    	out.println("");
-                    else
-                    	out.println(request.getAttribute("result"));
-                    
-							                    
-                    
-                    %>
-                    </p>
-                    
-			   </form>
+            <div class="hero-unit">
+            	<h2 class="heading">Edit About Us</h2> 
+            	<form class="form-inline" action="PageContentServlet" method="post">
+	                <textarea name="editcontent" class="nic_edit area-height" id="edit_about"><c:out value="${homecontent}" ></c:out></textarea>
+                    </br>
+                    <p align="right">
+                        <input type="hidden" name="hiddenvalue" value="2">
+                    	<input class="btn btn-primary" type="submit" value="Upadate" name="update">               
+                    </p>     
+    			</form>   
             </div>
 
             <!-- Example row of columns -->
@@ -86,14 +60,16 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/jquery-1.8.2.js"><\/script>')</script>
-		
-        <script src="js/bootstrap.js"></script>
-		<script src="js/jquery.validate.min.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			$('#submit').click(function(){
-				$('#passwordfrm').validate();
-			});
+	
+    	<script src="js/nicEdit.js" type="text/javascript"></script>
+        <script type="text/javascript">
+        	//<![CDATA[
+				bkLib.onDomLoaded(function() { new nicEditor({fullPanel : true}).panelInstance('edit_about'); });
+			//]]>
 		</script>
+        
+		<script src="js/bootstrap.js"></script>
+
         <script src="js/main.js"></script>
         
     </body>

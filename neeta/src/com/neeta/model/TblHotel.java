@@ -32,7 +32,8 @@ public class TblHotel
 	        psmt.setString(5,hib.getInfo());
 	      
 	        psmt.executeUpdate();
-	        
+	        con.commit();
+	        	        
 	        return true;
 	        // add_image(image_path);
 		
@@ -62,7 +63,7 @@ public class TblHotel
         pst.setString(4,hib.getContact_det());
         pst.setString(5,hib.getInfo());
         pst.executeUpdate();
-		
+		con.commit();
 		return true;
 		
 	}
@@ -94,7 +95,7 @@ public class TblHotel
 			hib2.setType(rs.getInt("Type"));
 			hib2.setAddress(rs.getString("Address"));
 			hib2.setContact_det(rs.getString("Contact_det"));
-			hib2.setpath(rs.getString("info"));
+			hib2.setInfo(rs.getString("info"));
 			upd_list.add(hib2);
 			
 		}
@@ -117,7 +118,7 @@ public class TblHotel
 			hib.setType(rs.getInt("Type"));
 			hib.setAddress(rs.getString("Address"));
 			hib.setContact_det(rs.getString("Contact_det"));
-			hib.setpath(rs.getString("info"));
+			hib.setInfo(rs.getString("info"));
 			l.add(hib);
 		}
 		con.commit();

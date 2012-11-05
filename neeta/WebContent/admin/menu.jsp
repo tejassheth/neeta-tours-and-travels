@@ -35,18 +35,22 @@
                                     <li><a href="showstations.jsp">Station List</a></li>
                                     <li class="divider"></li>                                    
                                 </ul>
-                            </li>
+                            </li>                                                
+                            
+                            
 							<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Packages<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="AddPackageServlet">New Package</a></li>
-                                    <li><a href="managepackage.jsp">Remove/Edit Package</a></li>									
+                                    <li><a href="managepackage.jsp">Remove/Edit Package</a></li>
+                                    <li><a href="AddPackageImages">Add Package Image</a></li>
+                                    <li><a href="ManagePackageImage">Manage Package Images</a></li>									
                                     <li class="divider"></li>
                                 </ul>
                             </li>
 							
 							<li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Customer<b class="caret"></b></a>
+                                <a href="#	" class="dropdown-toggle" data-toggle="dropdown">Manage Customer<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="newcustomer.jsp">New Customer</a></li>
                                     <li><a href="blockcustmoer.jsp">Block Customer</a></li>
@@ -58,10 +62,10 @@
 							<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Contents<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="edithome.jsp">Home</a></li>
-                                    <li><a href="editaboutus.jsp">About Us</a></li>
-                                    <li><a href="editcontactus.jsp">Contact Us</a></li>
-									<li><a href="edittermsandcondition.jsp">Terms and Conditions</a></li>
+                                    <li><a href="PageContentServlet?id=1">Home</a></li>
+                                    <li><a href="PageContentServlet?id=2">About Us</a></li>
+                                    <li><a href="PageContentServlet?id=3">Contact Us</a></li>
+									<li><a href="PageContentServlet?id=4">Terms and Conditions</a></li>
                                     <li class="divider"></li>                                    
                                 </ul>
                             </li>
@@ -70,7 +74,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hotels<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="addhotel.jsp">New Hotel</a></li>
-                                    <li><a href="managehotel.jsp">Remove/Edit Hotel</a></li>                                    
+                                    <li><a href="AddHotelServlet">Remove/Edit Hotel</a></li>                                    
                                     <li class="divider"></li>                                    
                                 </ul>
                             </li>
