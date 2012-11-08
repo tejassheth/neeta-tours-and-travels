@@ -31,10 +31,10 @@ public class LogOut extends HttpServlet {
 		HttpSession session =request.getSession(false);
 		if(session!= null)
 		{
-			session.removeAttribute("Name");
-			session.removeAttribute("Role");
+			//System.out.println("invalidating sression");
+			session.invalidate();
 		}
-		response.sendRedirect("./admin/index.jsp");
+		response.sendRedirect("./login/index.jsp");
 	}
 
 	/**

@@ -51,7 +51,7 @@
                     <div class="span5">
                         <p>                	
                             <label for="package_name">Package Name :</label>
-                            <input type="text" class="span2" name="package_name" id="package_name" required="required">
+                            <input type="text" class="span2" name="package_name" id="package_name" required="required" maxlength="50">
                         </p>                       
                        <div id="daygroup">
                             <input type="hidden" name="theValue" value="0" id="theValue" />                            
@@ -81,8 +81,8 @@
                         
                         <p>
                             <label for="hotel">Hotel :</label>
-                            <select id="hotel" name="hotel" class="span2">
-                                <option>--Select Hotel--</option>
+                            <select id="hotel" name="hotel" class="span2 required">
+                                <option value="">--Select Hotel--</option>
                                 <c:forEach items="${hotelinfo}" var="hi">
                                     <option value="${hi.h_id}">${hi.hname}</option>                                
                                 </c:forEach>
@@ -91,7 +91,7 @@
                         
                         <p>
                         	<label for="minperson">Minimum Person :</label>
-                            <input type="number" name="minperson" id="minperson" class="span2" required="required">
+                            <input type="number" name="minperson" id="minperson" min="1" max="20" maxlength="2" class="span2" required="required">
                         </p>
                                                 
                        <p>

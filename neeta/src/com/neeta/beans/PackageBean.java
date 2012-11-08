@@ -1,10 +1,8 @@
-package com.neeta.beans;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package com.neeta.beans;
 
 /**
  *
@@ -12,26 +10,32 @@ package com.neeta.beans;
  */
 public class PackageBean 
 {
+    int p_id;
     String name;
     String information;
     String incl_excl;
     int duration;
     float fare;
     int hotelId;
-    int p_id=0;
+    int minperson;
 
-    
-    
+    public void setMinperson(int minperson) {
+        this.minperson = minperson;
+    }
 
-	public int getP_id() {
-		return p_id;
-	}
+    public int getMinperson() {
+        return minperson;
+    }
 
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
-	}
+    public void setP_id(int p_id) {
+        this.p_id = p_id;
+    }
 
-	public void setName(String name) {
+    public int getP_id() {
+        return p_id;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -78,9 +82,4 @@ public class PackageBean
     public int getHotelId() {
         return hotelId;
     }
-
-	public void setMin_person(int parseInt) {
-		// TODO Auto-generated method stub
-		
-	}
 }

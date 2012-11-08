@@ -24,14 +24,14 @@ body {
 <link rel="stylesheet" href="css/jquery.ui.timepicker.css">
 <link rel="stylesheet" href="css/jquery-ui-1.8.24.custom.css">
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
-<script src="js/jquery.validate.min.js"></script>
 <script src="js/jquery-1.8.2.js"></script>
+<script src="js/jquery.validate.min.js"></script>
 <script type="text/javascript">
 	function loadStation() {
 		$.getJSON("../JSONAllStations", function(obj) {
 			//alert(obj.Result);
 			$('#station').empty();
-			$("#station").append(new Option("--Select Station--",	0));
+			$("#station").append(new Option("--Select Station--",	""));
 			for ( var propertyName in obj.Data) {
 				$("#station").append(
 						new Option(obj.Data[propertyName].stationName,
@@ -87,7 +87,7 @@ body {
 			<form class="form-inline label-150" method="post" action="#" id="Frm" onSubmit="">
 				<p id="result" align="center"></p>
 				<p>
-					<label for="state">Select Station :</label> <select class="span2"
+					<label for="state">Select Station :</label> <select class="span2 required"
 						name="station" id="station">
 					</select>
 				</p>
@@ -119,7 +119,18 @@ body {
 	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script type="text/javascript">
         	$('#submit').click(function(){
-        		$("#Frm").validate();
+        		$.validator.addMethod("accept", function(value, element, arg){
+    				console.log(arg);
+    				console.log(value);
+    				alert(value.match(new RegExp("." + param + "$")));
+    				
+    				 }, "Value must not equal arg.");
+
+    				 // configure your validation
+    				 $("#Frm").validate({
+    				  rules: { station_name: {accept: "/^[a-zA-Z() ]+$/" } },
+    				  messages: {station_name: { accept: "Please Insert Onlu Alphabets" } }  
+    				 });
         	});
         </script>
 	

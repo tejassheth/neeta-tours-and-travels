@@ -30,12 +30,13 @@ body {
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <script src="js/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <script src="js/jquery-1.8.2.js"></script>
+<script src="js/jquery.validate.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	function loadStation() {
 		$.getJSON("../JSONAllStations", function(obj) {
 			//alert(obj.Result);
 			$('#station').empty();
-			$("#station").append(new Option("--Select Station--",	0));
+			$("#station").append(new Option("--Select Station--",	""));
 			for ( var propertyName in obj.Data) {
 				$("#station").append(
 						new Option(obj.Data[propertyName].stationName,
@@ -62,12 +63,15 @@ body {
 					e.preventDefault();
 				}
 				$("#result").show();
-				$("#result").hide(2000);
 				$("#stationname").val("");
 				loadStation();
 				}, "json");
 				e.preventDefault();
 		});
+		$("#delete").click(function(e) {
+			$("#Frm").valid();
+		});
+		
 
 	});
 </script>
@@ -89,14 +93,14 @@ body {
 			<h2 class="heading">Remove Station</h2>
 			<form class="form-inline label-150" method="post" action="#" id="Frm"
 				onSubmit="">
-				<p id="result"></p>
+				<p id="result" align="center"></p>
 				<p>
-					<label for="state">Select Station :</label> <select class="span2"
+					<label for="state">Select Station :</label> <select class="span2 required"
 						name="station" id="station">
 					</select>
 				</p>
 				<p>
-					<input class="btn btn-primary btn-modify-1" type="submit" name="submit" value="Remove Station">
+					<input class="btn btn-primary btn-modify-1" type="submit" name="submit" value="Remove Station" id="delete">
 				</p>
 
 			</form>

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.neeta.validation.Validation;
+
 /**
  * Servlet Filter implementation class AdminFliter
  */
@@ -35,31 +37,41 @@ public class AdminFilter implements Filter {
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 *  
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
 		HttpServletRequest req = (HttpServletRequest) request;
-		HttpSession session = req.getSession(false);
-		System.out.print(req.getParameter("JavaScript"));
-		
-		/*if (session != null) {
-			String ses= session.getAttribute("Role").toString();
-			System.out.print(ses);
-			
-					if(ses.equals(new String("admin"))) {
-				System.out.print(session.getAttribute("Role"));
-				// pass the request along the filter chain*/
-				chain.doFilter(request, response);
-			/*} else {
-				// System.out.print("Else");
+		HttpSession session = req.getSession();
+		String uri = ((HttpServletRequest) request).getRequestURI();
+		if(!Validation.isJsp(uri)&&(uri.contains(".")))
+		{
+			chain.doFilter(request, response);
+		}
+		else
+		{
+		if (session != null) {
+			String isLogged = (String) session.getAttribute("role");
+			if (isLogged != null) {
+				{
+					
+						if(isLogged.equalsIgnoreCase("admin"))
+						{
+							chain.doFilter(request, response);
+						}
+						else
+						{
 				((HttpServletResponse) response)
-						.sendRedirect("../user/bus.jsp");
-			}
-		} else {
-			((HttpServletResponse) response).sendRedirect("../user/bus.jsp");
-		}*/
+						.sendRedirect("../login/index.jsp");
+						}
+					}
+			} 			// pass the request along the filter chain*/
+			else
+				((HttpServletResponse) response).sendRedirect("../login/index.jsp");
+		}	
+		}
 	}
 
 	/**

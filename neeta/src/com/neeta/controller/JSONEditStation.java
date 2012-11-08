@@ -42,6 +42,7 @@ public class JSONEditStation extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out=response.getWriter();
 		JSONObject jo=new JSONObject();
+		try{
 		StationBean oldStation= new StationBean();
 		StationBean newStation=new StationBean();
 		oldStation.setStationId(Integer.parseInt(request.getParameter("station_id")));
@@ -60,6 +61,11 @@ public class JSONEditStation extends HttpServlet {
 			jo.put("Result","True");
 		else
 			jo.put("Result", "False");
+		}
+		catch(Exception e)
+		{
+			jo.put("Result", "False");
+		}
 		out.print(jo);
 	}
 

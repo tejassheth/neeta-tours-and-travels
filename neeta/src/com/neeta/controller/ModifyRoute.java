@@ -79,6 +79,7 @@ public class ModifyRoute extends HttpServlet {
 			}
 			catch (Exception e) {
 				out.println("Invalid data");
+				response.sendRedirect("manageroute.jsp");
 				e.printStackTrace();
 			}
 		}

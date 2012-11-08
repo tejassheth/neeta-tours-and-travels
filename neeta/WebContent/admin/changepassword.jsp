@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Add City</title>
+        <title>Change password</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -43,6 +43,7 @@
                     <p>
 						<label for="city">Current Password:</label>
 						<input type="password" name="old_password" required="required" class="span2" id="current_pass" >
+						
 					</p>
                     
                     <p>

@@ -10,9 +10,9 @@
   </filter>
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
-    <url-pattern>/admin/home.jsp</url-pattern>
+    <url-pattern>/admin/*</url-pattern>
   </filter-mapping>
-  <servlet>
+    <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>com.neeta.controller.Login</servlet-class>
   </servlet>
@@ -108,4 +108,219 @@
     <servlet-name>FetchRoute</servlet-name>
     <url-pattern>/admin/FetchRoute</url-pattern>
   </servlet-mapping>
-</web-app>
+  <servlet>
+    <servlet-name>AddHotelServlet</servlet-name>
+    <servlet-class>com.neeta.controller.AddHotelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddHotelServlet</servlet-name>
+    <url-pattern>/admin/AddHotelServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>FetchBusBookingDetail</servlet-name>
+    <servlet-class>com.neeta.controller.FetchBusBookingDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FetchBusBookingDetail</servlet-name>
+    <url-pattern>/admin/FetchBusBookingDetail</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ManagePackageServlet</servlet-name>
+    <servlet-class>com.neeta.controller.ManagePackageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagePackageServlet</servlet-name>
+    <url-pattern>/admin/ManagePackageServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>PackageBookingRequestServlet</servlet-name>
+    <servlet-class>com.neeta.controller.PackageBookingRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PackageBookingRequestServlet</servlet-name>
+    <url-pattern>/admin/PackageBookingRequestServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PackagePaidStatusServlet</servlet-name>
+    <servlet-class>com.neeta.controller.PackagePaidStatusServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PackagePaidStatusServlet</servlet-name>
+    <url-pattern>/admin/PackagePaidStatusServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RoomServlet</servlet-name>
+    <servlet-class>com.neeta.controller.RoomServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomServlet</servlet-name>
+    <url-pattern>/admin/RoomServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>changeAndForgetPassword</servlet-name>
+    <servlet-class>com.neeta.controller.changeAndForgetPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>changeAndForgetPassword</servlet-name>
+    <url-pattern>/admin/changeAndForgetPassword</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>AddNewRoute</servlet-name>
+    <servlet-class>com.neeta.controller.AddNewRoute</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddNewRoute</servlet-name>
+    <url-pattern>/admin/AddNewRoute</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddPackageImages</servlet-name>
+    <servlet-class>com.neeta.controller.AddPackageImages</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddPackageImages</servlet-name>
+    <url-pattern>/admin/AddPackageImages</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>AddPackageServlet</servlet-name>
+    <servlet-class>com.neeta.controller.AddPackageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddPackageServlet</servlet-name>
+    <url-pattern>/admin/AddPackageServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>GetAllBus</servlet-name>
+    <servlet-class>com.neeta.controller.GetAllBus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetAllBus</servlet-name>
+    <url-pattern>/admin/GetAllBus</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>com.neeta.controller.LogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOut</servlet-name>
+    <url-pattern>/admin/LogOut</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ManagePackageImage</servlet-name>
+    <servlet-class>com.neeta.controller.ManagePackageImage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagePackageImage</servlet-name>
+    <url-pattern>/admin/ManagePackageImage</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ModifyBusDetail</servlet-name>
+    <servlet-class>com.neeta.controller.ModifyBusDetail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyBusDetail</servlet-name>
+    <url-pattern>/admin/ModifyBusDetail</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ModifyRoute</servlet-name>
+    <servlet-class>com.neeta.controller.ModifyRoute</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyRoute</servlet-name>
+    <url-pattern>/admin/ModifyRoute</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>PageContentServlet</servlet-name>
+    <servlet-class>com.neeta.controller.PageContentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PageContentServlet</servlet-name>
+    <url-pattern>/admin/PageContentServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>UploadImageServlet</servlet-name>
+    <servlet-class>com.neeta.controller.UploadImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UploadImageServlet</servlet-name>
+    <url-pattern>/admin/UploadImageServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpg</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.JPG</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpeg</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.png</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.PNG</url-pattern>
+  </servlet-mapping>
+	<servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.JPEG</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.gif</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.GIF</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.iso</url-pattern>
+  </servlet-mapping>
+</web-app>  

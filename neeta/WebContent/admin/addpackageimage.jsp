@@ -48,8 +48,8 @@
 			   		
                     <p>
                         <label for="state">Package :</label>
-			<select class="span2" name="package" id="package">
-                            <option value="0">--Select Package--</option>
+			<select class="span2 required" name="package" id="package">
+                            <option value="">--Select Package--</option>
                             <c:forEach items="${plist}" var="pl">
                                 <option value="${pl.p_id}">${pl.name}</option>                                
                             </c:forEach>
@@ -66,6 +66,7 @@
                                 <input id="image_1" name="image_1" class="span2" type="text" required="required" onclick="callfile(id)" readonly>
                                 <input type="button" class="btn btn-primary" id="imagebutton_1" onclick="callfile(id)" value="Browse">	
                             </p>
+                            
                         </div>
                     
                     <p>
@@ -154,6 +155,9 @@
 			}
 			$('#upload').click(function(){
 				$("#imageform").validate();
+				
+				
+				
 			});
 		</script>
 		<script src="js/jquery.validate.min.js" type="text/javascript"></script>

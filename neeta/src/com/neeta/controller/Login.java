@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 /**
  * Servlet implementation class Login
@@ -33,20 +34,28 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		JSONObject jo=new JSONObject();
+		try{
 		LoginBean login =new LoginBean();
 		login.setEmailid(request.getParameter("emailid"));
 		login.setPassword(request.getParameter("password"));
 		login=TblLogin.checkLogin(login);
-		JSONObject jo=new JSONObject();
 		if(login!=null)
 		{
-			jo.put("Result","True");
-			HttpSession session=request.getSession();
+			jo.put("Result","True");			
+			HttpSession session=request.getSession(false);
 			session.setAttribute("Name", login.getEmailid());
-			session.setAttribute("Role",TblRoles.getRole(login.getRolesid()).getRoleName());
+			session.setAttribute("role",TblRoles.getRole(login.getRolesid()).getRoleName());
 		}
 		else
 			jo.put("Result","False");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			jo.put("Result","False");
+		}
 		out.print(jo);
+		
 	}
 }

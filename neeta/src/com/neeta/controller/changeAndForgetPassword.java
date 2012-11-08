@@ -76,7 +76,7 @@ public class changeAndForgetPassword extends HttpServlet {
 			else
 			result_message="Could not got your details/password ";
 			request.setAttribute("result", result_message);
-			rd=request.getRequestDispatcher("forgotpassword.jsp");
+			rd=request.getRequestDispatcher("../login/forgotpassword.jsp");
 			rd.forward(request, response);
 		}
 	}

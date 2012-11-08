@@ -24,7 +24,7 @@ import java.util.*;
 public class PackageBookingRequestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   PackageBookingRequest pbr=new PackageBookingRequest();
+   
    RequestDispatcher rd;
    String packageBooking_id=null;
 	String email_id=null;
@@ -37,7 +37,7 @@ public class PackageBookingRequestServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		
+		PackageBookingRequest pbr=new PackageBookingRequest();
 		List<PackageBookingDetailsBean> pkg_book_list = null;
 		try {
 			
@@ -59,7 +59,7 @@ public class PackageBookingRequestServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String req_name=request.getParameter("req_type");
-		
+		PackageBookingRequest pbr=new PackageBookingRequest();
 		if(req_name.equals("Accept"))
 		{
 			 packageBooking_id=request.getParameter("pb_id");

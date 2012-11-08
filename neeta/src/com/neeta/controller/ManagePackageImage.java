@@ -100,18 +100,21 @@ public class ManagePackageImage extends HttpServlet {
             {                
                 //System.out.println(e.nextElement());
                 str=(String)e.nextElement();
-                System.out.println(str);
+                System.out.println("Tejas:-"+ str);
                 param.add(str);                
             }
+            
+            System.out.println("param:"+param);
             String pid=PackageImages.deleteImages(param,path);
-            //System.out.println(pid);
+            
+            System.out.println(pid+"   null");
             path = request.getRealPath("")+"//images//package"+pid+"//";      
-            System.out.println(path);
-            ArrayList<String> imgList=PackageImages.getPath(Integer.parseInt(pid),path);
-            ArrayList<PackageBean> pb=TblPackage.getPackage();        
+            //System.out.println(path);
             RequestDispatcher rd=request.getRequestDispatcher("managepackageimages.jsp");
             request.setAttribute("path","../images/"+"package"+pid);
-            request.setAttribute("imgList",imgList);        
+            ArrayList<String> imgList=PackageImages.getPath(Integer.parseInt(pid),path);
+            ArrayList<PackageBean> pb=TblPackage.getPackage();
+            request.setAttribute("imgList",imgList);
             request.setAttribute("load", "false");
             request.setAttribute("plist", pb);
             request.setAttribute("pid", pid);

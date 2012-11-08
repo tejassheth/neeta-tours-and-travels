@@ -34,11 +34,12 @@
         <jsp:include page="menu.jsp" flush="true"></jsp:include>
 
         <div class="container">
-
+	
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
             	<h2 class="heading">Manage Bus</h2>
                 <div class="white-block">
+                <h1 id="result">${result}</h1>
                 	<table cellpadding="0" cellspacing="0">
                     <tr><th>No.</th>
                     	<th>Bus No.</th>
@@ -65,6 +66,7 @@
                     </c:forEach>
                     </table>
                 </div> 
+                
             </div>
 
             <!-- Example row of columns -->
@@ -84,6 +86,7 @@
 	    <script src="js/main.js"></script>
         <script type="text/javascript">
         $(function(){
+        	$("#result").fadeOut(4000);
         	$("#delete").live("click",function(e)
         	{
         		$busid=$(this).attr("busid");

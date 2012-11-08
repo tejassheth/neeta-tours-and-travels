@@ -73,7 +73,7 @@
 		$.getJSON("../JSONAllStations", function(obj) {
 			//alert(obj.Result);
 			$s.empty();
-			$s.append(new Option("--Select Station--",	0));
+			$s.append(new Option("--Select Station--",	""));
 			$routeid=$s.attr("sid");;
 			for ( var propertyName in obj.Data) {
 				if(obj.Data[propertyName].staionId==$routeid)
@@ -92,8 +92,81 @@
 		loadStation($("#destinationcity"));
 		
 		//var obj = ({"Data":{"Alabama":"01","Alaska":"02","Arizona":"03","Arkansas":"04","California":"05","Colorado":"06","Connecticutt":"07","Delaware":"08","Florida":"09","Georgia":"10","Hawaii":"11","Idaho":"12","Illinois":"13","Indiana":"14","Iowa":"15","Kansas":"16","Kentucky":"17","Louisiana":"18","Maine":"19","Massachusetts":"20","Michigan":"21"}});
+		$("#sourcecity").change(function(){
+			if($(this).val()!=0)
+			{
+				
+			if($("#destinationcity").val()!=$(this).val())
+			{
+			$("#station1").val($(this).val());
+			}
+			else
+			{
+				alert("Sourece Ans Destination Not Same");
+				$(this).val(0);
+				$("#station1").val(0);
+			}
+			}
+			else
+				$("#station1").val(0);
+		});
+		$("#destinationcity").change(function(){
+			$last=parseInt($('#theValue').val());
+			//alert($last);
+			if($(this).val()!=0)
+			{
 			
-	});
+			if($("#sourcecity").val()!=$(this).val())
+			{
+
+				$("#station"+$last).val($(this).val());
+			}
+			else
+			{
+				alert("Sourece Ans Destination Not Same");
+				$(this).val(0);
+				$("#station"+$last).val(0);
+			}
+			}
+			else
+				$("#station"+$last).val(0);
+		});
+		$('input[name^="distance"]').live("change",function(){
+			$n=$("#theValue").val();
+			//alert($n);
+			for($i=2;$i<=$n+1;$i++)
+			{
+				if($(this).val()==$("#distance"+($i)).val())
+				{
+					if(($i+1)<=$n+1)
+					{
+						$("#distance"+($i+1)).attr("min",$(this).val());
+						break;
+					}
+				}
+			}
+		});
+		$('select[name^="station"]').live("change",function(){
+			$i=1;
+			$n=$("#theValue").val();
+			if($(this).val()!=0)
+			{
+				for(;$i<=$n+1;$i++)
+				{
+					if(($(this).attr("name")!="station"+($i)))
+					{
+					if($(this).val()==$("#station"+($i)).val())
+					{
+						alert("You Can Not Select This Station, It Is Selected...!!!");
+						$(this).val(0);
+						break;
+					}
+					}
+				}
+			}
+		});
+	});		
+	
 	
 </script>
 	
@@ -117,18 +190,14 @@
                     <div class="span5">
                         <p>                	
                             <label for="sourcecity">Source City :</label>
-                            <select type="text" class="span3" name="sourcecity" sid="${requestScope.Route.sourceId}" id="sourcecity">
-                            	
+                            <select type="text" class="span3 required" name="sourcecity" sid="${requestScope.Route.sourceId}" id="sourcecity">
                             </select>
                         </p>
-                        
-                        
-                                                                        
                     </div>
                     <div class="span5">
                     	<p>                	
                             <label for="destinationcity">destination City :</label>
-                            <select type="text"  class="span3" sid="${requestScope.Route.destinationId}"name="destinationcity" id="destinationcity">
+                            <select type="text"  class="span3 required" sid="${requestScope.Route.destinationId}"name="destinationcity" id="destinationcity">
                             	                            </select>
                         </p>                                            
                     </div>
@@ -148,32 +217,63 @@
                         <div class="clearfix"></div>
                         <p  class="p-mod"></p>
                          	<c:set var="counter" value="1" />
-                     	
+                     		<c:set var="min" value="0" />
                      	
                         <div id="stationgroup">
-                        	<c:forEach items="${Route_Map}" var="route_MapList" varStatus="index">                            
-                            <p id="pstation${counter}">
-                                <div class="span2">
-                                <select class="span2" name="station${counter}" sid="${route_MapList.station_id}" id="station${counter}">
-                                                                   
-                                </select></div>
-                                <div class="span2"><input type="text" name="time${counter}" id="time${counter}" class="span2" value="${route_MapList.duration}" readonly="readonly" required="required"></div>
-                                <div class="span2"><input type="number" name="distance${counter}" id="distance${counter}" class="span2" value="${route_MapList.distance}" required="required"></div>
-                                <div class="span2"><input type="number" name="seatingfare${counter}" id="seatingfare${counter}" class="span2" value="${route_MapList.seating_fare}" required="required"></div>
-                                <div class="span2"><input type="number" name="sleepingfare${counter}" id="sleepingfare${counter}" class="span2" value="${route_MapList.sleeping_fare}" required="required"></div>
-                                 <div class="clearfix"></div>
-                                 <p class="botton-8"></p>
-                                <script text="text/javascript">
-                                loadStation($("#station"+${counter}));	
-                                </script>
-                                 
-                            </p>
+                        	<c:forEach items="${Route_Map}" var="route_MapList" varStatus="i">
+                        	<c:choose>  
+        					<c:when test="${i.index=='0'}">
+  								<div id="pstation${counter}">
+                                	<div class="span2">
+                                	<select class="span2 required" name="station${counter}" sid="${route_MapList.station_id}" id="station${counter}">
+                                	</select>
+                                	</div>
+                                	<div class="span2"><input type="text" name="time${counter}" id="time${counter}" class="span2" value="${route_MapList.duration}" readonly="readonly" required="required"  ></div>
+                                	<div class="span2"><input type="number" name="distance${counter}" id="distance${counter}" min="${min}" class="span2" value="${route_MapList.distance}" required="required" readonly="readonly"></div>
+                                	<div class="span2"><input type="number" name="seatingfare${counter}" id="seatingfare${counter}" min="0" class="span2" value="${route_MapList.seating_fare}" required="required" readonly="readonly"></div>
+                                	<div class="span2"><input type="number" name="sleepingfare${counter}" id="sleepingfare${counter}" min="0" class="span2" value="${route_MapList.sleeping_fare}" required="required" readonly="readonly"></div>
+                                 	<div class="clearfix"></div>
+                                 	<div class="botton-8"></div>
+                                	<script text="text/javascript">
+                                	loadStation($("#station"+${counter}));	
+                                	</script>
+                                 	<c:set var="min" value="${route_MapList.distance}" />
+                            	</div>
+                            </c:when>
+                            
+        						<c:when test="${$i.index!= '1'}">
+                               <div id="pstation${counter}">
+                                	<div class="span2">
+                                	<select class="span2 required" name="station${counter}" sid="${route_MapList.station_id}" id="station${counter}">
+                                	</select></div>
+                                
+                                	<div class="span2"><input type="text" name="time${counter}" id="time${counter}" class="span2" value="${route_MapList.duration}" readonly="readonly" required="required"></div>
+                                	<div class="span2"><input type="number" name="distance${counter}" id="distance${counter}" min="${min}" class="span2" value="${route_MapList.distance}" required="required"></div>
+                                	<div class="span2"><input type="number" name="seatingfare${counter}" id="seatingfare${counter}" min="0" class="span2" value="${route_MapList.seating_fare}" required="required"></div>
+                                	<div class="span2"><input type="number" name="sleepingfare${counter}" id="sleepingfare${counter}" min="0" class="span2" value="${route_MapList.sleeping_fare}" required="required"></div>
+                                	<div class="clearfix"></div>
+                                
+                                	<p class="botton-8"></p>
+                               	</div>
+                                	<script text="text/javascript">
+                                	loadStation($("#station"+${counter}));	
+                                	</script>
+                                	<c:set var="min" value="${route_MapList.distance}" />
+                            	
+    						
+    						</c:when>
+    						</c:choose>
+    					
                             <c:set var="counter" value="${counter+1}" />
-                            <input type="hidden" value="${counter}" id="theValue2" name="theValue2"  />
                             </c:forEach>
+                            <c:set var="counter" value="${counter-1}" />
+                            <script text="text/javascript">
+                            	$("#station1").attr("disabled",true);
+                                $("#station"+${counter}).attr("disabled",true);	
+                                </script>
                             
                      	</div>
-                     	<input type="hidden" value="${counter-2}" id="theValue" name="theValue"  />
+                     	<input type="hidden" value="${counter}" id="theValue" name="theValue"  />
                       	<div class="heading"></div>
                         <p class="p-mod-1">                        	
                             <button class="btn btn-primary margin-bottom-10 margin-left-10" name="addday" id="addday" onClick="return addInputBox();">Add Station</button>
@@ -207,21 +307,24 @@
 				//alert("fsjrf1");
 				var ni = document.getElementById('stationgroup');				
 				var numi = document.getElementById('theValue');				
-				var num = (document.getElementById('theValue').value -1)+ 2;
+				var num = parseInt($("#theValue").val());
 				//var num = (document.getElementById('theValue').value -1)+ 2;				
 				numi.value = num;
 				num++;		
 				//alert("fsjrf2");
-				var newdiv = document.createElement('p');				
+				var newdiv = document.createElement('div');				
 				var divIdName = "pstation"+num ;				
 				newdiv.setAttribute('id',divIdName);
 				//alert("fsjrf3");
-				var content = "<select class=\"span2\" name=\"station"+num+"\" id=\"station"+num+"\"> </select>";
+				var content = "<div class='span2'>";
+					content =content+" <select class=\"span2 required\" name=\"station"+num+"\" id=\"station"+num+"\"> </select></div>";
 				//alert(content);
-				content =content + " <input type=\"text\" id=\"time"+num+"\" name=\"time"+num+"\" class=\"span2\" readonly=\"readonly\" required=\"required\" >"; 
-				content=content + " <input type=\"number\" id=\"distance"+num+"\" name=\"distance"+num+"\" class=\"span2\" required=\"required\" >";
-				content=content + " <input type=\"number\" class=\"span2\" id=\"seatingfare"+num+"\" name=\"seatingfare"+num+"\" required=\"required\" >";
-				content=content +" <input type=\"number\" class=\"span2\" id=\"sleepingfare"+num+"\" name=\"sleepingfare"+num+"\" required=\"required\" >";							
+				content =content + " <div class='span2'><input type=\"text\" id=\"time"+num+"\" name=\"time"+num+"\" class=\"span2\" readonly=\"readonly\" required=\"required\" ></div>"; 
+				content=content + " <div class='span2'><input type=\"number\" id=\"distance"+num+"\" name=\"distance"+num+"\" class=\"span2\" required=\"required\" ></div>";
+				content=content + " <div class='span2'><input type=\"number\" class=\"span2\" id=\"seatingfare"+num+"\" name=\"seatingfare"+num+"\" required=\"required\" ></div>";
+				content=content +" <div class='span2'><input type=\"number\" class=\"span2\" id=\"sleepingfare"+num+"\" name=\"sleepingfare"+num+"\" required=\"required\" ></div>";
+				content=content +" <div class='clearfix'></div>";
+				content=content +" <p class=\"botton-8\"></p>";
 				//alert("fsjrf4");
 				newdiv.innerHTML = content;
 				//alert("fsjrf5");
@@ -229,24 +332,56 @@
 				$("#time"+num+"").timepicker();
 				loadStation($("#station"+num+""));
 				//alert(num);
+				add(num);
+				$("#theValue").val(parseInt($("#theValue").val())+1);
 				return false;		
 			}
-			
+			function add(num)
+			{
+				$("#station"+num+"").attr("sid",$("#destinationcity").val());
+				$("#time"+num).timepicker();
+				$("#station"+(num-1)+"").attr('disabled',false);
+				$("#station"+(num)+"").attr('disabled',true);
+				//$("#distance"+(num)+"").attr("min",$("#distance"+(num-1)+"").val());
+				$("#station"+(num-1)+"").val(0);
+				$("#time"+(num)+"").val($("#time"+(num-1)+"").val());
+				$("#time"+(num-1)+"").val("");
+				$("#distance"+(num)+"").val($("#distance"+(num-1)+"").val());
+				$("#distance"+(num-1)+"").val("");
+				$("#seatingfare"+(num)+"").val($("#seatingfare"+(num-1)+"").val());
+				$("#seatingfare"+(num-1)+"").val("");
+				$("#sleepingfare"+(num)+"").val($("#sleepingfare"+(num-1)+"").val());
+				$("#sleepingfare"+(num-1)+"").val("");
+				//alert($("#distance"+(num-2)+"").val());
+				loadStation($("#station"+num+""));
+				//alert($("#station"+num+"").val());
+			}
 			function removeInputBox()
 			{
 				var ni = document.getElementById('stationgroup');				
 				var numi = document.getElementById('theValue');				
-				var num = (document.getElementById('theValue').value -1)+ 2;				
+				var num = parseInt($("#theValue").val());
+				//alert(num);
 				//console.log(num);
 				if((num-2)==0)					
 					return false;				
 				numi.value = num-2;								
 				var divIdName = "pstation"+num ;
 				var olddiv = document.getElementById(divIdName);
+				//alert(divIdName);
+				remove(num);
 				ni.removeChild(olddiv);
+				$("#theValue").val(parseInt($("#theValue").val())+1);
 				return false;
 			}
-			
+			function remove(num)
+			{
+				$("#station"+(num-1)+"").attr('disabled',true);
+				$("#station"+(num-1)+"").val($("#destinationcity").val());
+				$("#distance"+(num-1)+"").val($("#distance"+num+"").val());
+				$("#seatingfare"+(num-1)+"").val($("#seatingfare"+num+"").val());
+				$("#sleepingfare"+(num-1)+"").val($("#sleepingfare"+num+"").val());
+			}
 			
 		</script>	
         
@@ -267,7 +402,7 @@
 			c++;
 			//alert(c);
 			var i=1;
-			for(i=1;i<=c;i++)
+			for(i=2;i<=c;i++)
 			{
 				//alert(i);
 				$( "#time"+i ).timepicker();
@@ -279,6 +414,10 @@
         <script type="text/javascript">
         	$('#submit').click(function(){
         		$("#editroute").validate();
+        		var num = $('#theValue').val();
+        		$("#station1").attr('disabled',false);
+    			$("#station"+(num)+"").attr('disabled',false);
+    			
         	});
         </script>
         <script src="js/main.js"></script>

@@ -42,7 +42,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Packages<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="AddPackageServlet">New Package</a></li>
-                                    <li><a href="managepackage.jsp">Remove/Edit Package</a></li>
+                                    <li><a href="ManagePackageServlet">Remove/Edit Package</a></li>
                                     <li><a href="AddPackageImages">Add Package Image</a></li>
                                     <li><a href="ManagePackageImage">Manage Package Images</a></li>									
                                     <li class="divider"></li>
@@ -50,11 +50,9 @@
                             </li>
 							
 							<li class="dropdown">
-                                <a href="#	" class="dropdown-toggle" data-toggle="dropdown">Manage Customer<b class="caret"></b></a>
+                                <a href="FetchBusBookingDetail" class="dropdown-toggle" data-toggle="dropdown">Report<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="newcustomer.jsp">New Customer</a></li>
-                                    <li><a href="blockcustmoer.jsp">Block Customer</a></li>
-                                    <li><a href="unblockcustomer.jsp">Unblock Customer</a></li>
+                                    <li><a href="FetchBusBookingDetail">Booking List</a></li>
                                     <li class="divider"></li>                                    
                                 </ul>
                             </li>
@@ -74,7 +72,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hotels<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="addhotel.jsp">New Hotel</a></li>
-                                    <li><a href="AddHotelServlet">Remove/Edit Hotel</a></li>                                    
+                                    <li><a href="AddHotelServlet">Remove/Edit Hotel</a></li>
+                                    <li><a href="RoomServlet">Add Hotel Rooms</a></li>                                    
                                     <li class="divider"></li>                                    
                                 </ul>
                             </li>
@@ -83,6 +82,7 @@
                             	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                 	<li><a href="PackageBookingRequestServlet">Booking Request</a></li>
+                                	<li><a href="PackagePaidStatusServlet">Booking Payment Status</a></li>
                                     <li><a href="changepassword.jsp">Change Password</a></li>
                                     <li><a href="../LogOut">LogOut</a></li>                                    
                                     <li class="divider"></li>                                    
@@ -94,3 +94,11 @@
                 </div>
             </div>
         </div>
+        <noscript>
+	<h3>This site requires javascripts to be enabled on your browser. Kindly enable javascript to use the side. </h3>
+	<style type="text/css">
+		.container{
+		display:none;
+		}
+	</style>
+</noscript>

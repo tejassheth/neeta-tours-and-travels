@@ -81,7 +81,7 @@ public class PackageImages
 	 for (int fileInList = 0; fileInList < files.length; fileInList++)  
 	 {  
              imageList.add(files[fileInList].getName());  
-             //System.out.println(path);
+             //System.out.println(files[fileInList].getName());
 	 }
         return imageList;
     }
@@ -93,8 +93,11 @@ public class PackageImages
         while(ir.hasNext())
         {
             String str=(String)ir.next();
-            if(str.equals("submit"))
+            System.out.println();
+            System.out.println(str+" dbwgfsfjsfs");
+            if(str.equals("submit")|| str.equals("totimage"))
             {                
+            	System.out.println("in danger");
             }                
             else
             {            
@@ -102,8 +105,9 @@ public class PackageImages
                 //System.out.println(part[0]);
                 //System.out.println(part[1]);
                 //System.out.println(path);
-                pkg=part[1];
+               //System.out.print(part[0]);
                 path=path+"//images//package"+part[1]+"//"+part[0];
+                pkg=part[1];
                 File f=new File(path);
                 f.delete();
             }

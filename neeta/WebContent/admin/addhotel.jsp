@@ -63,7 +63,7 @@
                     
                     <p>
 						<label for="contact">Contact No. :</label>
-						<input type="number" name="contact" class="span2" id="contact" required="required" min="01111111111" maxlength="11"/>						
+						<input type="number" name="contact" class="span2" id="contact" required="required" minlength="10" maxlength="11"/>						
 					</p>
                     
                     
@@ -78,9 +78,9 @@
                     
                     <p>
 						<label for="hotel_type">Type of Hotel :</label>
-						<select class="span2" name="hotel_type" id="hotel_type">
-                        	<option value="0">--Select Hotel Type--</option>
-                            <option value="2">2 Star</option>
+						<select class="span2 required" name="hotel_type" id="hotel_type">
+                        	<option value="">--Select Hotel--</option>
+                        	<option value="2">2 Star</option>
                             <option value="3">3 Star</option>
                             <option value="4">4 Star</option>
                             <option value="5">5 Star</option>
@@ -95,6 +95,9 @@
                     <div class="clearfix"></div>
                     <p>
                     	<input  class="btn btn-primary btn-modify" type="submit" name="fun_type" id="Add" value="AddHotel">
+                    </p>
+                    <p align="center" id="result">
+                    ${h_id}
                     </p>
 			   </div>
                </form>
@@ -118,6 +121,7 @@
 		<script type="text/javascript">
 		$(document).ready(function() 
 		{
+			$("#result").fadeOut(4000);
 			$( "#time" ).timepicker();
 		});
 		</script>
@@ -127,18 +131,21 @@
 				bkLib.onDomLoaded(function() { new nicEditor({fullPanel : true}).panelInstance('hotel_info'); });
 			//]]>
 		</script>
-        <script type="text/javascript">
-			$('input[id=img_path]').change(function() 
-			{
-		   		$('#fake_path').val($(this).val());
-				
-			});
-		</script>
+        
         <script src="js/jquery.validate.min.js" type="text/javascript"></script>
         <script src="js/main.js"></script>
         <script text="text/javascript">
-        $("#Add").click(function(e){
-        	$('#hotelform').validate();
+        $("#Add").click(function(e){    	
+        	
+        	//alert($(".nicEdit-main_1").html());
+        	$.validator.addMethod("valueNotEqualsaddStation", function(value, element, arg){
+			//console.log(arg);
+			//console.log(value);
+			//alert(arg != value && ($(".nicEdit-main_1").html()!="<br>"));
+			return (arg != value && ($(".nicEdit-main_1").html()!="<br>"));
+			}, "Value must not equal arg.");
+			// configure your validation
+			$("#hotelform").validate();   	
         	$hotel_name =$("#hotel_name").val();
         	$hotel_type=$("#hotel_type").val();
         	$contect=$("#contact").val();
@@ -152,9 +159,8 @@
         	/*$.post("JSONAddHotel",{},function(){
         		
         	})*/;
-        	
-        });
-        
+       });
+      
         </script>
         <script src="js/bootstrap.js"></script>        	
         <script src="js/main.js"></script>

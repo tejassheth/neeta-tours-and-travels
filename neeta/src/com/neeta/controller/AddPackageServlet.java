@@ -75,8 +75,8 @@ public class AddPackageServlet extends HttpServlet {
         List<HotelInfoBean> hb;
 		try {
 			hb = ah.hotel_data();
-			if(hb==null)
-	            System.out.println("123");
+			//if(hb==null)
+	            //System.out.println("123");
 	        RequestDispatcher rd=request.getRequestDispatcher("newpackage.jsp");
 	        //System.out.println("123");
 	        request.setAttribute("hotelinfo", hb);
@@ -129,7 +129,7 @@ public class AddPackageServlet extends HttpServlet {
         pb.setHotelId(Integer.parseInt(request.getParameter("hotel")));
         System.out.println(Integer.parseInt(request.getParameter("minperson")));
         
-        pb.setMin_person(Integer.parseInt(request.getParameter("minperson")));
+        pb.setMinperson(Integer.parseInt(request.getParameter("minperson")));
         if(TblPackage.savePackage(pb,days))
         {
             System.out.println("success");

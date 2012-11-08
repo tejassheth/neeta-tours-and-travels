@@ -40,28 +40,24 @@ public static LoginBean  checkLogin(LoginBean login )
 public boolean forgetPassword(String email) 
 {	
 	ResultSet rs=null;
+	String password = null;
 	try {
-		String sql="select email_id from login where email_id=?";
+		con=DBConnection.getConnection();
+		String sql="select email_id,password from login where email_id=?";
 		PreparedStatement pst=con.prepareStatement(sql);
 		pst.setString(1,email);
 		rs=pst.executeQuery();
 		if(rs.next())
-		{	ResultSet prs;
-			String psql="select password from login where email_id=?";
-			PreparedStatement ppst=con.prepareStatement(psql);
-			ppst.setString(1, email);
-			prs=pst.executeQuery();
-			String password=null;
-			while(prs.next())
-			 password=prs.getString("password");
+		{
+			password=rs.getString("password");
+			//System.out.print(password);
 			pbr=new PackageBookingRequest();
 			boolean email_sent=pbr.sendEmail(email, "gotpassword", password,null);// calling the send email method of PackageBookingRequest class
 			if(email_sent==true)
 			return true;
-			else
-			return false;	
 		}
-		else return false;
+		else
+			return false;	
 	} 
 	catch (SQLException | MessagingException e)
 	{
@@ -74,6 +70,7 @@ public boolean changePassword(String old,String new_password)
 	PreparedStatement pst=null;
 	ResultSet rs=null;
 	String sql="select email_id from login where password=?";
+	con=DBConnection.getConnection();
 	try {
 		pst =con.prepareStatement(sql);
 		pst.setString(1, old);
@@ -81,7 +78,7 @@ public boolean changePassword(String old,String new_password)
 		if(rs.next())
 		{
 			String e_id=rs.getString("email_id");
-			String change="update login set password=? where email_id=?'";
+			String change="update login set password=? where email_id=?";
 			PreparedStatement ps=con.prepareStatement(change);
 			ps.setString(1,new_password);
 			ps.setString(2, e_id);

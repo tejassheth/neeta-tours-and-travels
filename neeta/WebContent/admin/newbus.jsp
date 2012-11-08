@@ -37,7 +37,7 @@
 			$.getJSON("../JSONAllRoutes", function(obj) {
 				//alert(obj.Result);
 				$s.empty();
-				$s.append(new Option("--Select Station--",	0));
+				$s.append(new Option("--Select Station--",	""));
 				for ( var propertyName in obj.Data) {
 					$s.append(
 							new Option(obj.Data[propertyName].source +" To "+obj.Data[propertyName].desti ,
@@ -69,27 +69,27 @@
                     <div class="span5">
                     <p>
                     	<label for="busno">Bus No. :</label>
-                        <input type="text" name="busno" id="busno" class="span2" required="required">
+                        <input type="text" name="busno" id="busno" class="span2" maxlength="10" required="required">
                     </p>	
 					<p>
 						<label for="time">Departure Time:</label>
-						<input type="time" name="time" class="span2" id="time" required="required" readonly="readonly" >
+						<input type="text" name="time" class="span2" id="time" required="required" readonly="readonly" >
 					</p>
                     </div>
                     <div class="span5">
                     	<p>
                     	<label for="name">Route:</label>
-                        <select class="span2" name="route" id="route">
+                        <select class="span2 required" name="route" id="route">
                       
                         </select>
                     	</p>
                         <p>
                         	<label for="seating">Seating Seats:</label>
-                        	<input type="number" class="span2" name="seating" id="seating" min="0" placeholder="No. of seating seats" required="required">
+                        	<input type="number" class="span2" name="seating" id="seating" min="0" maxlength="2" placeholder="No. of seating seats" required="required">
                         </p>
                         <p>
                         	<label for="sleeper">Sleeper Seats:</label>
-                        	<input type="number" class="span2" name="sleeper" id="sleeper" min="0" max="999" placeholder="No. of sleeper seats" required="required">
+                        	<input type="number" class="span2" name="sleeper" id="sleeper" min="0" maxlength="2" placeholder="No. of sleeper seats" required="required">
                         </p>
                     </div>
                 </div>
@@ -98,6 +98,7 @@
                     	<input class="btn btn-primary btn-modify" type="submit" id="submit" name="submit" value="Add Bus">
                     </p>
 			   </form>
+			   <h2 id="result">${result}</h2>
             </div>
 
             <!-- Example row of columns -->
@@ -120,7 +121,7 @@
 		$(document).ready(function() 
 		{
 			$("#time" ).timepicker();
-			
+			$("#result").fadeOut(4000);
 		});
 		</script>
 		<script type="text/javascript">

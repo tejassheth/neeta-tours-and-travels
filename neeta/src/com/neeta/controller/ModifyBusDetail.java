@@ -1,6 +1,8 @@
 package com.neeta.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +26,7 @@ public class ModifyBusDetail extends HttpServlet {
     public ModifyBusDetail() {
         super();
         // TODO Auto-generated constructor stub
-    }
+   }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,7 +40,9 @@ public class ModifyBusDetail extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		RequestDispatcher rd=request.getRequestDispatcher("GetAllBus");
+		try
+		{
 		Bus_DetailBean d = new Bus_DetailBean();
 		d.setBus_id(Integer.parseInt(request.getParameter("busid")));
 		d.setBus_no(request.getParameter("busno"));
@@ -51,7 +55,18 @@ public class ModifyBusDetail extends HttpServlet {
 		rmb.setRoute_id(Integer.parseInt(request.getParameter("route")));
 		
 		boolean b = Bus_Detail.modifyBusDetail(d, rmb);
-		//System.out.println(b);
+		request.setAttribute("resulr","Not Edit , Please Try Again !!!");
+		//rd.forward(request, response);
 		response.sendRedirect("GetAllBus");
+		//System.out.println(b);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			request.setAttribute("resulr","Not Edit , Please Try Again !!!");
+			//rd.forward(request, response);
+			response.sendRedirect("GetAllBus");
+		}
+		
 	}
 }

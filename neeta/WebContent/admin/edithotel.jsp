@@ -54,7 +54,7 @@
             <!-- Main hero unit for a primary marketing message or call to action -->
             <div class="hero-unit">
             	<h2 class="heading">Edit Hotel</h2>
-               <form class="form-inline label-150" method="post" action="AddHotelServlet"  >
+               <form class="form-inline label-150" id="edithotel" method="post" action="AddHotelServlet"  >
 			   	<div class="row">
                     <div class="span5">
                     <c:forEach items="${update}" var="upd">
@@ -87,7 +87,8 @@
                     <div class="span5">
                     
                     <p>
-						<label for="hotel_type">Type of Hotel :</label>						
+						<label for="hotel_type">Type of Hotel :</label>	
+						
 						<select class="span2" name="type" id="type">                        	
                             <option value="2">2 Star</option>
                             <option value="3">3 Star</option>
@@ -110,7 +111,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <p>
-                    	<input class="btn btn-primary btn-modify" type="submit" name="fun_type" value="Update">
+                    	<input class="btn btn-primary btn-modify" type="submit" id="submit" name="fun_type" value="Update">
                     </p>
 			   </div>
                </form>
@@ -149,6 +150,14 @@
 				$("#fake_path").val($(this).val());
 				
 			});
+		</script>
+		
+		<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+		$('#submit').click(function(){
+			$("#edithotel").validate();
+		});	
+		
 		</script>
         <script src="js/bootstrap.js"></script>
 
